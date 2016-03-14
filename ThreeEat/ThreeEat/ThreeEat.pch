@@ -1,0 +1,20 @@
+//
+//  ThreeEat.pch
+//  ThreeEat
+//
+//  Created by WuJiaqi on 16/3/14.
+//  Copyright © 2016年 Samsun. All rights reserved.
+//
+
+#ifndef ThreeEat_pch
+#define ThreeEat_pch
+
+#import "BaseViewController.h"
+#import "DefaultsNames.h"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* ThreeEat_pch */
+
+

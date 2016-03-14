@@ -7,9 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "TabbarController.h"
 
 @interface AppDelegate ()
 
+@property (nonatomic, strong) TabbarController *tabbar;
 @end
 
 @implementation AppDelegate
@@ -17,7 +19,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window.rootViewController = self.tabbar;
+    
     return YES;
+}
+
+- (TabbarController *)tabbar {
+    
+    if (!_tabbar) {
+        _tabbar = [[TabbarController alloc] init];
+        _tabbar.selectedIndex = 0;
+    }
+    return _tabbar;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
