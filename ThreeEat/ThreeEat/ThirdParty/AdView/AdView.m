@@ -201,6 +201,10 @@
     leftImageIndex = imageLinkURL.count-1;
     centerImageIndex = 0;
     rightImageIndex = 1;
+
+    [self fixImageScale:_leftImageView];
+    [self fixImageScale:_centerImageView];
+    [self fixImageScale:_rightImageView];
     
     if (imageLinkURL.count==1)
     {
@@ -216,6 +220,11 @@
     [self setPageControlShowStyle:self.PageControlShowStyle];
 }
 
+- (void)fixImageScale:(UIImageView *)imageView {
+    
+    imageView.clipsToBounds = YES;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+}
 
 
 #pragma mark - 设置每个对应广告对应的广告语
