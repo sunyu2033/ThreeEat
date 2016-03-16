@@ -60,6 +60,10 @@
 		968058E31C996744007A113F /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 968058D81C996744007A113F /* UIScrollView+MJExtension.m */; };
 		968058E41C996744007A113F /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 968058DA1C996744007A113F /* UIScrollView+MJRefresh.m */; };
 		968058E51C996744007A113F /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 968058DC1C996744007A113F /* UIView+MJExtension.m */; };
+		968058EE1C996868007A113F /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 968058E71C996868007A113F /* sr_refresh.png */; };
+		968058EF1C996868007A113F /* sr_refresh@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 968058E81C996868007A113F /* sr_refresh@2X.png */; };
+		968058F01C996868007A113F /* SRRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 968058EB1C996868007A113F /* SRRefreshView.m */; };
+		968058F11C996868007A113F /* SRSlimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 968058ED1C996868007A113F /* SRSlimeView.m */; };
 		96CF81F61C9683E10038FD97 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CF81B71C9683E10038FD97 /* BaseViewController.m */; };
 		96CF81F81C9683E10038FD97 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CF81BB1C9683E10038FD97 /* Common.m */; };
 		96CF81F91C9683E10038FD97 /* HexStringToColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CF81BD1C9683E10038FD97 /* HexStringToColor.m */; };
@@ -223,6 +227,13 @@
 		968058DA1C996744007A113F /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		968058DB1C996744007A113F /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		968058DC1C996744007A113F /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		968058E71C996868007A113F /* sr_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sr_refresh.png; sourceTree = "<group>"; };
+		968058E81C996868007A113F /* sr_refresh@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sr_refresh@2X.png"; sourceTree = "<group>"; };
+		968058E91C996868007A113F /* SRDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRDefine.h; sourceTree = "<group>"; };
+		968058EA1C996868007A113F /* SRRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRRefreshView.h; sourceTree = "<group>"; };
+		968058EB1C996868007A113F /* SRRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRRefreshView.m; sourceTree = "<group>"; };
+		968058EC1C996868007A113F /* SRSlimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRSlimeView.h; sourceTree = "<group>"; };
+		968058ED1C996868007A113F /* SRSlimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRSlimeView.m; sourceTree = "<group>"; };
 		96CF81B61C9683E10038FD97 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		96CF81B71C9683E10038FD97 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		96CF81BA1C9683E10038FD97 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -490,6 +501,20 @@
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
+		968058E61C996868007A113F /* SlimeRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				968058E71C996868007A113F /* sr_refresh.png */,
+				968058E81C996868007A113F /* sr_refresh@2X.png */,
+				968058E91C996868007A113F /* SRDefine.h */,
+				968058EA1C996868007A113F /* SRRefreshView.h */,
+				968058EB1C996868007A113F /* SRRefreshView.m */,
+				968058EC1C996868007A113F /* SRSlimeView.h */,
+				968058ED1C996868007A113F /* SRSlimeView.m */,
+			);
+			path = SlimeRefresh;
+			sourceTree = "<group>";
+		};
 		96CF81B51C9683E10038FD97 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,6 +541,7 @@
 		96CF81C21C9683E10038FD97 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				968058E61C996868007A113F /* SlimeRefresh */,
 				968058CA1C996744007A113F /* MJRefresh */,
 				968058941C99647F007A113F /* MJExtension */,
 				968058871C996461007A113F /* MBProgressHUD */,
@@ -912,7 +938,9 @@
 				96DA8D641C98000700664DFF /* collection@2x.png in Resources */,
 				96D18F171C96BFDA00613C2E /* myRecipeSelected.png in Resources */,
 				96DA8D611C97FC5B00664DFF /* admire@2x.png in Resources */,
+				968058EF1C996868007A113F /* sr_refresh@2X.png in Resources */,
 				968058911C996461007A113F /* 37x-Checkmark@2x.png in Resources */,
+				968058EE1C996868007A113F /* sr_refresh.png in Resources */,
 				96D18F221C96BFDA00613C2E /* myRecipe@3x.png in Resources */,
 				968058DE1C996744007A113F /* MJRefresh.bundle in Resources */,
 				96D18F1D1C96BFDA00613C2E /* myRecipeSelected@2x.png in Resources */,
@@ -982,6 +1010,7 @@
 				968058AA1C99647F007A113F /* NSObject+MJCoding.m in Sources */,
 				968058A91C99647F007A113F /* MJType.m in Sources */,
 				96DA8D591C97F36B00664DFF /* SYTextField.m in Sources */,
+				968058F11C996868007A113F /* SRSlimeView.m in Sources */,
 				968058AD1C99647F007A113F /* NSString+MJExtension.m in Sources */,
 				04B9D8431C970F1E00595BA2 /* NSData+ImageContentType.m in Sources */,
 				04B9D8411C970F1E00595BA2 /* AdView.m in Sources */,
@@ -990,6 +1019,7 @@
 				96DA8D4D1C97E2A000664DFF /* CollectionHeader.m in Sources */,
 				968058921C996461007A113F /* MBProgressHUD.m in Sources */,
 				04B9D8461C970F1E00595BA2 /* SDWebImageDecoder.m in Sources */,
+				968058F01C996868007A113F /* SRRefreshView.m in Sources */,
 				968058AB1C99647F007A113F /* NSObject+MJKeyValue.m in Sources */,
 				04B9D8481C970F1E00595BA2 /* SDWebImageDownloaderOperation.m in Sources */,
 				96CF82211C9685430038FD97 /* HomeViewController.m in Sources */,

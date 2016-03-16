@@ -14,13 +14,14 @@
 #import "AdView.h"
 #import "BannerModel.h"
 #import "LNGood.h"
+#import "MJRefresh.h"
+#import "SRRefreshView.h"
 #import "CHTCollectionViewWaterfallCell.h"
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "CHTCollectionViewWaterfallHeader.h"
 #import "CollectionHeader.h"
-#import "MJRefresh.h"
 
-@interface HomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout>
+@interface HomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout, SRRefreshDelegate>
 
 // 商品列表数组
 @property (nonatomic, strong) NSMutableArray *goodsList;
@@ -31,6 +32,8 @@
 // 瀑布流布局
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) CollectionHeader *headerView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
+@property (nonatomic, assign) NSInteger pageNum;
 
 @end
 
@@ -91,16 +94,16 @@
 
 //创建刷新和加载更多地控件
 - (void)createRefreshView{
-//    _slimeView = [[SRRefreshView alloc] init];
-//    _slimeView.delegate = self;
-//    _slimeView.upInset = 0;
-//    _slimeView.slimeMissWhenGoingBack = YES;
-//    _slimeView.slime.bodyColor = [Colour setBgRGB:0xb34a4f];
-//    _slimeView.slime.skinColor = [UIColor whiteColor];
-//    _slimeView.slime.lineWith = 1;
-//    _slimeView.slime.shadowBlur = 0;
-//    _slimeView.slime.shadowColor = [UIColor clearColor];
-//    [_tableview addSubview:_slimeView];
+    _slimeView = [[SRRefreshView alloc] init];
+    _slimeView.delegate = self;
+    _slimeView.upInset = 0;
+    _slimeView.slimeMissWhenGoingBack = YES;
+    _slimeView.slime.bodyColor = [UIColor redColor];
+    _slimeView.slime.skinColor = [UIColor whiteColor];
+    _slimeView.slime.lineWith = 1;
+    _slimeView.slime.shadowBlur = 0;
+    _slimeView.slime.shadowColor = [UIColor clearColor];
+    [_collectionView addSubview:_slimeView];
     
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
@@ -108,6 +111,37 @@
     _collectionView.footerPullToRefreshText = @"上拉可以加载更多数据了";
     _collectionView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
     _collectionView.footerRefreshingText = @"正在帮你加载中,请稍等";
+}
+
+//下拉刷新
+- (void)slimeRefreshStartRefresh:(SRRefreshView *)refreshView
+{
+    //    _len1+=1;
+    //    _len2+=10;
+    //    [self requestJson1];
+    
+    /**
+     结束刷新 [_slimeView endRefresh];
+     **/
+    
+    _pageNum=1;
+//    _reflesh=1;
+//    if (_shouView.CategoriesReflush&&_shouView.topviewReflush&&_shouView.scrollviewReflush) {
+//        _shouView.CategoriesReflush=false;
+//        _shouView.topviewReflush=false;
+//        _shouView.scrollviewReflush=false;
+//        [self DownloadTheLatestData];
+//        [_shouView Categories];
+//        [_shouView CarouselPage];
+//        [_shouView TOPCategories];
+//    }else{
+//        [_slimeView endRefresh];
+//    }
+}
+
+
+- (void)footerRereshing {
+    
 }
 
 /**
