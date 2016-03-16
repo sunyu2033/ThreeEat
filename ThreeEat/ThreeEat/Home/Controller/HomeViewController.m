@@ -18,6 +18,7 @@
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "CHTCollectionViewWaterfallHeader.h"
 #import "CollectionHeader.h"
+#import "MJRefresh.h"
 
 @interface HomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout>
 
@@ -58,6 +59,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+//    [self startLoading];
+    
+    [self createRefreshView];
+    
     CHTCollectionViewWaterfallLayout *flowLayout = [[CHTCollectionViewWaterfallLayout alloc] init];
     flowLayout.headerHeight = heightOfHeader;
     
@@ -82,6 +87,27 @@
     [self.view addSubview:_collectionView];
     
     [self loadData];
+}
+
+//创建刷新和加载更多地控件
+- (void)createRefreshView{
+//    _slimeView = [[SRRefreshView alloc] init];
+//    _slimeView.delegate = self;
+//    _slimeView.upInset = 0;
+//    _slimeView.slimeMissWhenGoingBack = YES;
+//    _slimeView.slime.bodyColor = [Colour setBgRGB:0xb34a4f];
+//    _slimeView.slime.skinColor = [UIColor whiteColor];
+//    _slimeView.slime.lineWith = 1;
+//    _slimeView.slime.shadowBlur = 0;
+//    _slimeView.slime.shadowColor = [UIColor clearColor];
+//    [_tableview addSubview:_slimeView];
+    
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [_collectionView addFooterWithTarget:self action:@selector(footerRereshing)];
+    _collectionView.footerPullToRefreshText = @"上拉可以加载更多数据了";
+    _collectionView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
+    _collectionView.footerRefreshingText = @"正在帮你加载中,请稍等";
 }
 
 /**

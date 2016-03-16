@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "HexStringToColor.h"
+#import "ShowHUDTool.h"
 /**
  UINavigationBar的类别
  实现对系统按钮样式的更改
@@ -95,27 +96,19 @@
 #pragma mark -
 #pragma mark Loading View
 -(void)startLoading {
-    
+    [ShowHUDTool showHUDWithLoadingWithTitle:@"数据加载中" withView:self.view animated:YES];
 //    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    if (self.loadingView==nil) {
-        NSLog(@"111111113");
-        // 初始化风火轮
-        MBProgressHUD* l_hud = [[MBProgressHUD alloc] init];
-        self.loadingView = l_hud;
-        self.loadingView.labelText = @"加载中...";
-        self.loadingView.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0f, [UIScreen mainScreen].bounds.size.height/2.0f - 54.0f);
-        [self.view addSubview:self.loadingView];
-        [self.view bringSubviewToFront:self.loadingView];
-    }else{
-        NSLog(@"333333331");
-    }
-    [self.loadingView show:YES];
-    
-//    self.loadingView = [[MBProgressHUD alloc] init];
-//    self.loadingView.labelText = @"加载中...";
-//    self.loadingView.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0f, [UIScreen mainScreen].bounds.size.height/2.0f - 54.0f);
-//    [self.view addSubview:self.loadingView];
-//    [self.view bringSubviewToFront:self.loadingView];
+//    if (self.loadingView==nil) {
+//        // 初始化风火轮
+//        MBProgressHUD* l_hud = [[MBProgressHUD alloc] init];
+//        self.loadingView = l_hud;
+//        self.loadingView.labelText = @"加载中...";
+//        self.loadingView.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0f, [UIScreen mainScreen].bounds.size.height/2.0f - 54.0f);
+//        [self.view addSubview:self.loadingView];
+//        [self.view bringSubviewToFront:self.loadingView];
+//    }else{
+//        
+//    }
 //    [self.loadingView show:YES];
 }
 

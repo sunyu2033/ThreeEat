@@ -49,7 +49,6 @@
 
 - (void)setFrames {
 
-    NSLog(@"titlewidth:%f", titleWidth);
     _iconView.frame = CGRectMake(0, 0, _good.w, _good.h);
     CGSize contentSize = [_good.title stringForWidth:titleWidth font:_recipeNameLabel.font];
     _recipeNameLabel.frame = CGRectMake(originX, CGRectGetMaxY(_iconView.frame)+5,
@@ -68,6 +67,8 @@
         _iconView = [[UIImageView alloc] init];
         _iconView.clipsToBounds = YES;
         _iconView.contentMode = UIViewContentModeScaleAspectFill;
+        [_iconView.layer setCornerRadius:4];
+        [_iconView.layer setMasksToBounds:YES];
         [self.contentView addSubview:_iconView];
     }
     return _iconView;
