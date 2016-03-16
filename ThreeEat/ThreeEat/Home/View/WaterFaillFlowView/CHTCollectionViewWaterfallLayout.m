@@ -190,7 +190,6 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
 
 - (id)init {
     if (self = [super init]) {
-        NSLog(@"123");
     [self commonInit];
   }
   return self;

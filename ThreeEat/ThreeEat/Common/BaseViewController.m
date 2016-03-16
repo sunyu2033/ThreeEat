@@ -114,10 +114,11 @@
 
 -(void)stopLoading{
     
-	if (self.loadingView!=nil) {
-        [self.loadingView removeFromSuperview];
-        self.loadingView = nil;
-    }
+    [ShowHUDTool hiddenHUDLoadingForView:self.view animated:YES];
+//	if (self.loadingView!=nil) {
+//        [self.loadingView removeFromSuperview];
+//        self.loadingView = nil;
+//    }
 }
 
 - (void)endEdit

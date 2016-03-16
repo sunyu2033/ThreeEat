@@ -61,11 +61,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
 //    [self startLoading];
-    
-    [self createRefreshView];
-    
+//    [self stopLoading];
     CHTCollectionViewWaterfallLayout *flowLayout = [[CHTCollectionViewWaterfallLayout alloc] init];
     flowLayout.headerHeight = heightOfHeader;
     
@@ -73,10 +70,11 @@
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50) collectionViewLayout:flowLayout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.backgroundColor = self.view.backgroundColor;                //GETColor(240, 240, 240, 1);
+    _collectionView.backgroundColor = self.view.backgroundColor;
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.allowsMultipleSelection = NO;                    //默认为NO,是否可以多选
     _collectionView.scrollEnabled = YES;
+    [self.view addSubview:_collectionView];
     
     //注册
     [_collectionView registerClass:[CHTCollectionViewWaterfallCell class] forCellWithReuseIdentifier:@"CHTCollectionViewWaterfallCell"];
@@ -87,9 +85,29 @@
     [_collectionView registerClass:[CHTCollectionViewWaterfallHeader class]
         forSupplementaryViewOfKind:CHTCollectionElementKindSectionHeader
                withReuseIdentifier:HEADER_IDENTIFIER];
-    [self.view addSubview:_collectionView];
     
     [self loadData];
+    [self addHeader];
+    [self createRefreshView];
+}
+
+- (void)addHeader
+{
+    __unsafe_unretained typeof(self) vc = self;
+    // 添加下拉刷新头部控件
+    [self.collectionView addHeaderWithCallback:^{
+        // 进入刷新状态就会回调这个Block
+        
+        // 模拟延迟加载数据，因此2秒后才调用）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [vc.collectionView reloadData];
+            // 结束刷新
+            [vc.collectionView headerEndRefreshing];
+        });
+    }];
+    
+#warning 自动刷新(一进入程序就下拉刷新)
+    [self.collectionView headerBeginRefreshing];
 }
 
 //创建刷新和加载更多地控件
@@ -141,7 +159,7 @@
 
 
 - (void)footerRereshing {
-    
+    NSLog(@"footer");
 }
 
 /**
@@ -150,7 +168,7 @@
 - (void)loadData {
     
     NSMutableDictionary *dict1 = [NSMutableDictionary dictionary];
-    [dict1 setObject:@"http://xqproduct.xiangqu.com/FoYm07fprsGaSbbFYzAUXbAwMH09?imageView2/2/w/300/q/90/format/jpg/@w/$w$@/@h/$h$@/1800x1200/" forKey:@"img"];
+    [dict1 setObject:@"http://e.hiphotos.baidu.com/image/pic/item/8cb1cb1349540923592e4e479758d109b3de4947.jpg" forKey:@"img"];
     [dict1 setObject:@"速成巧克力布丁" forKey:@"title"];
     [dict1 setObject:@"甜点和烘烤食品" forKey:@"discribe"];
     [dict1 setObject:@"6,263" forKey:@"admireNum"];
@@ -158,7 +176,7 @@
     [dict1 setObject:@"21.3K" forKey:@"collectionNum"];
     
     NSMutableDictionary *dict2 = [NSMutableDictionary dictionary];
-    [dict2 setObject:@"http://a.hiphotos.baidu.com/image/h%3D200/sign=b913c88785025aafcc3279cbcbedab8d/562c11dfa9ec8a130b27d9a7f003918fa0ecc0bc.jpg" forKey:@"img"];
+    [dict2 setObject:@"http://f.hiphotos.baidu.com/image/pic/item/242dd42a2834349b7eaf886ccdea15ce37d3beaa.jpg" forKey:@"img"];
     [dict2 setObject:@"法式香草面包(Fougasse)配番茄干" forKey:@"title"];
     [dict2 setObject:@"快手甜品" forKey:@"discribe"];
     [dict2 setObject:@"21.3K" forKey:@"admireNum"];
@@ -194,17 +212,6 @@
     return cell;
 }
 
-
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-//    UICollectionReusableView *reusableView = nil;
-//    
-//    if ([kind isEqualToString:CHTCollectionElementKindSectionHeader]) {
-//        
-//    } else if ([kind isEqualToString:CHTCollectionElementKindSectionFooter]) {
-//    }
-//    
-//    return reusableView;
-//}
 #pragma mark - FooterView
 /**
  *  追加视图
@@ -252,8 +259,6 @@
             NSLog(@"%@--%@",banner.bannerTitle, banner.bannerUrl);
         };
         [reusableview addSubview:adView];
-        
-//        reusableview = headerView;
 
     }else if (kind == CHTCollectionElementKindSectionFooter) {
         
