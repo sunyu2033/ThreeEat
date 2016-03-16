@@ -11,4 +11,6 @@
 
 @interface CHTCollectionViewWaterfallCell : UICollectionViewCell
 @property (nonatomic, strong) LNGood *good;
+@property (nonatomic, assign) NSInteger index;
++ (NSMutableArray *)getContentHeight:(NSArray *)goods;
 @end

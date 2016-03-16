@@ -189,7 +189,8 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
 }
 
 - (id)init {
-  if (self = [super init]) {
+    if (self = [super init]) {
+        NSLog(@"123");
     [self commonInit];
   }
   return self;
@@ -205,7 +206,6 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
 #pragma mark - Methods to Override
 - (void)prepareLayout {
   [super prepareLayout];
-
   [self.headersAttribute removeAllObjects];
   [self.footersAttribute removeAllObjects];
   [self.unionRects removeAllObjects];

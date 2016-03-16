@@ -9,15 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface LNGood : NSObject
-@property (nonatomic, assign) NSInteger h;                  // 图片高
-@property (nonatomic, assign) NSInteger w;                  // 图片宽
+@property (nonatomic, assign) CGFloat h;                    // 图片高
+@property (nonatomic, assign) CGFloat w;                    // 图片宽
 @property (nonatomic, strong) NSString *img;                // 图片地址
 @property (nonatomic, strong) NSString *title;              // 菜谱名称
 @property (nonatomic, strong) NSString *discribe;           // 菜谱描述
 @property (nonatomic, strong) NSString *admireNum;          // 点赞个数
 @property (nonatomic, strong) NSString *isAdmire;           // 点赞
 @property (nonatomic, strong) NSString *collectionNum;      // 收藏数
+@property (nonatomic, assign) CGFloat contentHeight;        // 内容高度（除图片以外的高度）
 
-+ (instancetype)goodWithDict:(NSDictionary *)dict; // 字典转模型
++ (instancetype)goodWithDict:(NSDictionary *)dict atIndex:(NSUInteger)index; // 字典转模型
 + (NSArray *)goodsWithArray:(NSArray *)goodsArray; // 根据索引返回商品数组
 @end

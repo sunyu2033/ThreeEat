@@ -7,6 +7,7 @@
 //
 
 #define heightOfHeader    172
+#define HEADER_IDENTIFIER @"WaterfallHeader"
 
 #import "HomeViewController.h"
 #import "BannerModel.h"
@@ -15,6 +16,7 @@
 #import "LNGood.h"
 #import "CHTCollectionViewWaterfallCell.h"
 #import "CHTCollectionViewWaterfallLayout.h"
+#import "CHTCollectionViewWaterfallHeader.h"
 #import "CollectionHeader.h"
 
 @interface HomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout>
@@ -41,14 +43,12 @@
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                          duration:(NSTimeInterval)duration {
     
-    NSLog(@"SCREEN_HEIGHT1111:%f", SCREEN_HEIGHT);
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
     [self updateLayoutForOrientation:toInterfaceOrientation];
 }
 
 - (void)updateLayoutForOrientation:(UIInterfaceOrientation)orientation {
     
-    NSLog(@"SCREEN_HEIGHT222:%f", SCREEN_HEIGHT);
     CHTCollectionViewWaterfallLayout *layout =
     (CHTCollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
     layout.columnCount = UIInterfaceOrientationIsPortrait(orientation) ? 2 : 3;
@@ -59,15 +59,12 @@
     // Do any additional setup after loading the view.
 
     CHTCollectionViewWaterfallLayout *flowLayout = [[CHTCollectionViewWaterfallLayout alloc] init];
-    flowLayout.minimumColumnSpacing = 8;
-    flowLayout.minimumInteritemSpacing = 8;
-
+    flowLayout.headerHeight = heightOfHeader;
+    
     //collectionView
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-30-64) collectionViewLayout:flowLayout];
-    _collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50) collectionViewLayout:flowLayout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.tag = 10101;
     _collectionView.backgroundColor = self.view.backgroundColor;                //GETColor(240, 240, 240, 1);
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.allowsMultipleSelection = NO;                    //默认为NO,是否可以多选
@@ -79,8 +76,9 @@
     //定义 section的  headerView
     //此处的identifier:@"HeaderView" 和 viewForSupplementaryElementOfKind 中的必须一样
     //还可以设置footer
-    [_collectionView registerClass:[CollectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
-//    flowLayout.headerReferenceSize = CGSizeMake(200, heightOfHeader);
+    [_collectionView registerClass:[CHTCollectionViewWaterfallHeader class]
+        forSupplementaryViewOfKind:CHTCollectionElementKindSectionHeader
+               withReuseIdentifier:HEADER_IDENTIFIER];
     [self.view addSubview:_collectionView];
     
     [self loadData];
@@ -91,33 +89,27 @@
  */
 - (void)loadData {
     
-    
     NSMutableDictionary *dict1 = [NSMutableDictionary dictionary];
-    [dict1 setObject:@"193" forKey:@"h"];
-    [dict1 setObject:@"290" forKey:@"w"];
     [dict1 setObject:@"http://xqproduct.xiangqu.com/FoYm07fprsGaSbbFYzAUXbAwMH09?imageView2/2/w/300/q/90/format/jpg/@w/$w$@/@h/$h$@/1800x1200/" forKey:@"img"];
-    [dict1 setObject:@"法式香草面包(Fougasse)配番茄干" forKey:@"title"];
+    [dict1 setObject:@"速成巧克力布丁" forKey:@"title"];
     [dict1 setObject:@"甜点和烘烤食品" forKey:@"discribe"];
     [dict1 setObject:@"6,263" forKey:@"admireNum"];
     [dict1 setObject:@"1" forKey:@"isAdmire"];
     [dict1 setObject:@"21.3K" forKey:@"collectionNum"];
     
     NSMutableDictionary *dict2 = [NSMutableDictionary dictionary];
-    [dict2 setObject:@"290" forKey:@"h"];
-    [dict2 setObject:@"290" forKey:@"w"];
-    [dict2 setObject:@"http://xqproduct.xiangqu.com/FhvU7uVm1ojzbtvPp3z66-MgxBH2?imageView2/2/w/300/q/90/format/jpg/@w/$w$@/@h/$h$@/730x730/" forKey:@"img"];
-    [dict2 setObject:@"速成巧克力布丁" forKey:@"title"];
+    [dict2 setObject:@"http://a.hiphotos.baidu.com/image/h%3D200/sign=b913c88785025aafcc3279cbcbedab8d/562c11dfa9ec8a130b27d9a7f003918fa0ecc0bc.jpg" forKey:@"img"];
+    [dict2 setObject:@"法式香草面包(Fougasse)配番茄干" forKey:@"title"];
     [dict2 setObject:@"快手甜品" forKey:@"discribe"];
     [dict2 setObject:@"21.3K" forKey:@"admireNum"];
     [dict2 setObject:@"0" forKey:@"isAdmire"];
     [dict2 setObject:@"6,298" forKey:@"collectionNum"];
     
     
-    NSArray *array = [NSArray arrayWithObjects:dict1,dict2,dict2,dict2,
-//                      dict2, dict2, dict1, dict2, dict2, dict1, dict2, dict2, dict1, dict2, dict2,
-                      nil];
+    NSArray *array = [NSArray arrayWithObjects:dict1,dict2,dict2,dict2,dict1,dict2,dict2,dict2,dict2,dict1,dict2,dict2,dict2,dict1,nil];
     
     NSArray *goods = [LNGood goodsWithArray:array];
+    goods = [CHTCollectionViewWaterfallCell getContentHeight:goods];
     [self.goodsList addObjectsFromArray:goods];
     // 设置布局的属性
     // 刷新数据
@@ -131,23 +123,40 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     // 创建可重用的cell
+    
     CHTCollectionViewWaterfallCell *cell = (CHTCollectionViewWaterfallCell *)[collectionView
                                  dequeueReusableCellWithReuseIdentifier:@"CHTCollectionViewWaterfallCell"
                                  forIndexPath:indexPath];
-    cell.good = self.goodsList[indexPath.item];
+    
+    LNGood *good = self.goodsList[indexPath.row];
+    cell.good = good;
+    
     return cell;
 }
 
+
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+//    UICollectionReusableView *reusableView = nil;
+//    
+//    if ([kind isEqualToString:CHTCollectionElementKindSectionHeader]) {
+//        
+//    } else if ([kind isEqualToString:CHTCollectionElementKindSectionFooter]) {
+//    }
+//    
+//    return reusableView;
+//}
 #pragma mark - FooterView
 /**
  *  追加视图
  */
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *reusableview = nil;
-    if (kind == UICollectionElementKindSectionHeader)
+    if (kind == CHTCollectionElementKindSectionHeader)
     {
-        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-        [headerView setBackgroundColor:[UIColor redColor]];
+        reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                                                  withReuseIdentifier:HEADER_IDENTIFIER
+                                                                                         forIndexPath:indexPath];
+        [reusableview setBackgroundColor:[UIColor redColor]];
         //广告轮播
         NSArray *imagesURL = @[
                                @"https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
@@ -182,11 +191,11 @@
         adView.callBackForModel = ^(BannerModel *banner) {
             NSLog(@"%@--%@",banner.bannerTitle, banner.bannerUrl);
         };
-        [headerView addSubview:adView];
+        [reusableview addSubview:adView];
         
-        reusableview = headerView;
+//        reusableview = headerView;
 
-    }else if (kind == UICollectionElementKindSectionFooter) {
+    }else if (kind == CHTCollectionElementKindSectionFooter) {
         
     }
     return reusableview;
@@ -233,11 +242,15 @@
 #pragma mark - CHTCollectionViewDelegateWaterfallLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    LNGood *good = _goodsList[indexPath.row];
-    CGSize size = CGSizeMake(good.w, good.h);
-    NSLog(@"width:%f height:%f", size.width, size.height);
+    LNGood *good = _goodsList[indexPath.item];
+    CGSize size = CGSizeMake(good.w, good.h+good.contentHeight);
     return size;
 }
+
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForHeaderInSection:(NSInteger)section
+//{
+//    return heightOfHeader;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

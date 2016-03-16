@@ -6,9 +6,13 @@
 //  Copyright (c) 2012年 Nelson. All rights reserved.
 //
 
+#define discribeHeight  15
+#define admireBtnHeight 25
+
 #import "CHTCollectionViewWaterfallCell.h"
 #import "LNGood.h"
 #import "UIImageView+WebCache.h"
+#import "NSString+Extend.h"
 
 
 @interface CHTCollectionViewWaterfallCell ()
@@ -17,38 +21,54 @@
 @property (nonatomic, strong) UILabel *discribeLabel;
 @property (nonatomic, strong) UILabel *admireNumLabel;
 @property (nonatomic, strong) UILabel *collectionNumLabel;
+@property (nonatomic, strong) SYButton *admireBtn;
+@property (nonatomic, strong) SYButton *collectionBtn;
 @end
 
 @implementation CHTCollectionViewWaterfallCell
 
-#define originX     10
-#define titleWidth  132
+#define originX     5
+#define titleWidth  ([UIScreen mainScreen].bounds.size.width-10)/2-5*2
 
 - (void)setGood:(LNGood *)good {
     
     self.layer.cornerRadius = 4;
+    self.backgroundColor = [UIColor greenColor];
     
     _good = good;
+    
     NSURL *url = [NSURL URLWithString:good.img];
     [self.iconView sd_setImageWithURL:url];
     self.recipeNameLabel.text = good.title;
     self.discribeLabel.text = good.discribe;
     self.admireNumLabel.text = good.admireNum;
     self.collectionNumLabel.text = good.collectionNum;
-//    NSLog(@"w:%ld h:%ld url:%@ title:%@ discribe:%@ admireNum:%@ collectionNum:%@", (long)good.w, (long)good.h, good.img, good.title, good.discribe, good.admireNum, good.collectionNum);
+    
+    [self setFrames];
 }
 
+- (void)setFrames {
+
+    NSLog(@"titlewidth:%f", titleWidth);
+    _iconView.frame = CGRectMake(0, 0, _good.w, _good.h);
+    CGSize contentSize = [_good.title stringForWidth:titleWidth font:_recipeNameLabel.font];
+    _recipeNameLabel.frame = CGRectMake(originX, CGRectGetMaxY(_iconView.frame)+5,
+                                        titleWidth, contentSize.height);
+    _discribeLabel.frame = CGRectMake(originX, CGRectGetMaxY(_recipeNameLabel.frame), titleWidth, discribeHeight);
+    _admireBtn.frame = CGRectMake(originX, CGRectGetMaxY(_discribeLabel.frame)+5, 25, admireBtnHeight);
+    _admireNumLabel.frame = CGRectMake(CGRectGetMaxX(_admireBtn.frame)+5, CGRectGetMinY(_admireBtn.frame), 50, CGRectGetHeight(_admireBtn.frame));
+    _collectionBtn.frame = CGRectMake(CGRectGetWidth(_iconView.frame)/2+10, CGRectGetMaxY(_discribeLabel.frame)+5, 25, admireBtnHeight);
+    _collectionNumLabel.frame = CGRectMake(CGRectGetMaxX(_collectionBtn.frame)+5, CGRectGetMinY(_collectionBtn.frame), 50, CGRectGetHeight(_collectionBtn.frame));
+}
 
 - (UIImageView *)iconView
 {
     if (!_iconView)
     {
-        NSLog(@"1111");
-        _iconView = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
-//        _iconView.frame = CGRectMake(0, 0, 152, 204);
-        _iconView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        _iconView.contentMode = UIViewContentModeScaleAspectFit;
-        [self addSubview:_iconView];
+        _iconView = [[UIImageView alloc] init];
+        _iconView.clipsToBounds = YES;
+        _iconView.contentMode = UIViewContentModeScaleAspectFill;
+        [self.contentView addSubview:_iconView];
     }
     return _iconView;
 }
@@ -57,14 +77,11 @@
 {
     if (!_recipeNameLabel)
     {
-        NSLog(@"2222");
         _recipeNameLabel = [[UILabel alloc] init];
         _recipeNameLabel.font = [UIFont systemFontOfSize:15];
         _recipeNameLabel.numberOfLines = 0;
-        _recipeNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        CGSize contentSize = [[Common sharedService] getLableSize:_recipeNameLabel.font withString:_good.title withCGSize:CGSizeMake(titleWidth, 2000)];
-        _recipeNameLabel.frame = CGRectMake(originX, CGRectGetMaxY(_iconView.frame)+5, titleWidth, contentSize.height);
-        [self addSubview:_recipeNameLabel];
+        _recipeNameLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        [self.contentView addSubview:_recipeNameLabel];
     }
     return _recipeNameLabel;
 }
@@ -73,13 +90,11 @@
 {
     if (!_discribeLabel)
     {
-        NSLog(@"3333");
         _discribeLabel = [[UILabel alloc] init];
         _discribeLabel.font = [UIFont systemFontOfSize:10];
         _discribeLabel.textColor = [UIColor lightGrayColor];
-        _discribeLabel.frame = CGRectMake(originX, CGRectGetMaxY(_recipeNameLabel.frame), titleWidth, 15);
         
-        [self addSubview:_discribeLabel];
+        [self.contentView addSubview:_discribeLabel];
     }
     return _discribeLabel;
 }
@@ -88,18 +103,15 @@
 {
     if (!_admireNumLabel)
     {
-        NSLog(@"4444");
         NSString *image = [_good.isAdmire intValue]==0 ? @"admire" : @"admire_click";
-        SYButton *admireBtn = [SYButton buttonWithType:UIButtonTypeCustom];
-        admireBtn.frame = CGRectMake(originX, CGRectGetMaxY(_discribeLabel.frame)+5, 25, 25);
-        [admireBtn setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-        [self addSubview:admireBtn];
+        _admireBtn = [SYButton buttonWithType:UIButtonTypeCustom];
+        [_admireBtn setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+        [self.contentView addSubview:_admireBtn];
         
         _admireNumLabel = [[UILabel alloc] init];
         _admireNumLabel.font = [UIFont systemFontOfSize:11];
         _admireNumLabel.textColor = [UIColor lightGrayColor];
-        _admireNumLabel.frame = CGRectMake(CGRectGetMaxX(admireBtn.frame)+5, CGRectGetMinY(admireBtn.frame), 50, CGRectGetHeight(admireBtn.frame));
-        [self addSubview:_admireNumLabel];
+        [self.contentView addSubview:_admireNumLabel];
     }
     return _admireNumLabel;
 }
@@ -108,18 +120,40 @@
 {
     if (!_collectionNumLabel)
     {
-        NSLog(@"5555");
-        SYButton *collectionBtn = [SYButton buttonWithType:UIButtonTypeCustom];
-        collectionBtn.frame = CGRectMake(CGRectGetWidth(_iconView.frame)/2+10, CGRectGetMaxY(_discribeLabel.frame)+5, 25, 25);
-        [collectionBtn setImage:[UIImage imageNamed:@"collection"] forState:UIControlStateNormal];
-        [self addSubview:collectionBtn];
+        _collectionBtn = [SYButton buttonWithType:UIButtonTypeCustom];
+        [_collectionBtn setImage:[UIImage imageNamed:@"collection"] forState:UIControlStateNormal];
+        [self.contentView addSubview:_collectionBtn];
         
         _collectionNumLabel = [[UILabel alloc] init];
         _collectionNumLabel.font = [UIFont systemFontOfSize:11];
         _collectionNumLabel.textColor = [UIColor lightGrayColor];
-        _collectionNumLabel.frame = CGRectMake(CGRectGetMaxX(collectionBtn.frame)+5, CGRectGetMinY(collectionBtn.frame), 50, CGRectGetHeight(collectionBtn.frame));
-        [self addSubview:_collectionNumLabel];
+        [self.contentView addSubview:_collectionNumLabel];
     }
     return _collectionNumLabel;
 }
+
+- (CGSize) titleSize{
+    return [[Common sharedService] getLableSize:[UIFont systemFontOfSize:15] withString:_good.title withCGSize:CGSizeMake(titleWidth, 2000)];
+}
+
++ (NSMutableArray *)getContentHeight:(NSArray *)goods {
+    
+    NSMutableArray *goodList = [NSMutableArray array];
+    for (LNGood *good in goods) {
+        good.contentHeight = [[self alloc] contentHeight:good];
+        [goodList addObject:good];
+    }
+    return goodList;
+}
+
+- (CGFloat)contentHeight:(LNGood *)good {
+    _good = good;
+    CGSize size = [good.title stringForWidth:titleWidth font:[UIFont systemFontOfSize:15]];
+    
+    NSLog(@"height:%f", size.height);
+    CGFloat height = size.height+discribeHeight+admireBtnHeight+5*3;
+    return height;
+}
+
+
 @end
