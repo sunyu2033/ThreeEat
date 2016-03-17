@@ -11,12 +11,10 @@
 
 #import "CHTCollectionViewWaterfallCell.h"
 #import "LNGood.h"
-#import "UIImageView+WebCache.h"
-#import "NSString+Extend.h"
-
 
 @interface CHTCollectionViewWaterfallCell ()
 @property (nonatomic, strong) UIImageView *iconView;
+@property (nonatomic, strong) SYButton *startBtn;
 @property (nonatomic, strong) UILabel *recipeNameLabel;
 @property (nonatomic, strong) UILabel *discribeLabel;
 @property (nonatomic, strong) UILabel *admireNumLabel;
@@ -33,7 +31,6 @@
 - (void)setGood:(LNGood *)good {
     
     self.layer.cornerRadius = 4;
-    self.backgroundColor = [UIColor greenColor];
     
     _good = good;
     
@@ -44,20 +41,30 @@
     self.admireNumLabel.text = good.admireNum;
     self.collectionNumLabel.text = good.collectionNum;
     
+    
     [self setFrames];
 }
 
 - (void)setFrames {
 
     _iconView.frame = CGRectMake(0, 0, _good.w, _good.h);
+    _startBtn.frame = CGRectMake(0, 0, _good.w/4, _good.w/4);
+    _startBtn.center = _iconView.center;
+    [_startBtn.layer setCornerRadius:_startBtn.frame.size.width/2];
     CGSize contentSize = [_good.title stringForWidth:titleWidth font:_recipeNameLabel.font];
     _recipeNameLabel.frame = CGRectMake(originX, CGRectGetMaxY(_iconView.frame)+5,
                                         titleWidth, contentSize.height);
     _discribeLabel.frame = CGRectMake(originX, CGRectGetMaxY(_recipeNameLabel.frame), titleWidth, discribeHeight);
-    _admireBtn.frame = CGRectMake(originX, CGRectGetMaxY(_discribeLabel.frame)+5, 25, admireBtnHeight);
+    _admireBtn.frame = CGRectMake(originX, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
     _admireNumLabel.frame = CGRectMake(CGRectGetMaxX(_admireBtn.frame)+5, CGRectGetMinY(_admireBtn.frame), 50, CGRectGetHeight(_admireBtn.frame));
-    _collectionBtn.frame = CGRectMake(CGRectGetWidth(_iconView.frame)/2+10, CGRectGetMaxY(_discribeLabel.frame)+5, 25, admireBtnHeight);
+    _collectionBtn.frame = CGRectMake(CGRectGetWidth(_iconView.frame)/2+10, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
     _collectionNumLabel.frame = CGRectMake(CGRectGetMaxX(_collectionBtn.frame)+5, CGRectGetMinY(_collectionBtn.frame), 50, CGRectGetHeight(_collectionBtn.frame));
+    
+    _admireBtn.enabled = [_good.isAdmire intValue]==0 ? YES : NO;
+    _collectionBtn.enabled = [_good.isCollection intValue]==0 ? YES : NO;
+    
+    NSString *image = [_good.isAdmire intValue]==0 ? @"admire" : @"admire_click";
+    [_admireBtn setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
 }
 
 - (UIImageView *)iconView
@@ -67,9 +74,14 @@
         _iconView = [[UIImageView alloc] init];
         _iconView.clipsToBounds = YES;
         _iconView.contentMode = UIViewContentModeScaleAspectFill;
-        [_iconView.layer setCornerRadius:4];
+//        [_iconView.layer setCornerRadius:4];
         [_iconView.layer setMasksToBounds:YES];
         [self.contentView addSubview:_iconView];
+        
+        _startBtn = [SYButton buttonWithType:UIButtonTypeCustom];
+        [_startBtn setImage:[UIImage imageNamed:@"start.jpg"] forState:UIControlStateNormal];
+        [_startBtn setBackgroundColor:[UIColor clearColor]];
+        [self.contentView addSubview:_startBtn];
     }
     return _iconView;
 }
@@ -104,9 +116,8 @@
 {
     if (!_admireNumLabel)
     {
-        NSString *image = [_good.isAdmire intValue]==0 ? @"admire" : @"admire_click";
         _admireBtn = [SYButton buttonWithType:UIButtonTypeCustom];
-        [_admireBtn setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+        [_admireBtn addTarget:self action:@selector(admireAction) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:_admireBtn];
         
         _admireNumLabel = [[UILabel alloc] init];
@@ -123,6 +134,7 @@
     {
         _collectionBtn = [SYButton buttonWithType:UIButtonTypeCustom];
         [_collectionBtn setImage:[UIImage imageNamed:@"collection"] forState:UIControlStateNormal];
+        [_collectionBtn addTarget:self action:@selector(collectionAction) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:_collectionBtn];
         
         _collectionNumLabel = [[UILabel alloc] init];
@@ -150,11 +162,20 @@
 - (CGFloat)contentHeight:(LNGood *)good {
     _good = good;
     CGSize size = [good.title stringForWidth:titleWidth font:[UIFont systemFontOfSize:15]];
-    
-    NSLog(@"height:%f", size.height);
-    CGFloat height = size.height+discribeHeight+admireBtnHeight+5*3;
+    CGFloat height = size.height+discribeHeight+admireBtnHeight+5*2;
     return height;
 }
 
+- (void)admireAction {
+    if ([_delegate respondsToSelector:@selector(addAdmire:)]) {
+        [_delegate addAdmire:self];
+    }
+}
+
+- (void)collectionAction {
+    if ([_delegate respondsToSelector:@selector(addCollection:)]) {
+        [_delegate addCollection:self];
+    }
+}
 
 @end

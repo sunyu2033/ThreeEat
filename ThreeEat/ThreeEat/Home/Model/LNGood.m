@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Lining. All rights reserved.
 //
 
-#define cellWidth   ([UIScreen mainScreen].bounds.size.width-10)/2
+#define cellWidth   ([UIScreen mainScreen].bounds.size.width-30)/2
 
 #import "LNGood.h"
 

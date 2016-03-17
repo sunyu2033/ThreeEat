@@ -6,7 +6,8 @@
 //  Copyright © 2016年 Samsun. All rights reserved.
 //
 
-#define heightOfHeader    172
+#define SYCollectionMargin      10
+#define SYHeightOfHeader        172
 #define HEADER_IDENTIFIER @"WaterfallHeader"
 
 #import "HomeViewController.h"
@@ -15,13 +16,12 @@
 #import "BannerModel.h"
 #import "LNGood.h"
 #import "MJRefresh.h"
-#import "SRRefreshView.h"
 #import "CHTCollectionViewWaterfallCell.h"
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "CHTCollectionViewWaterfallHeader.h"
-#import "CollectionHeader.h"
+//#import "HomeCollectionHeader.h"
 
-@interface HomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout, SRRefreshDelegate>
+@interface HomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout,CHTCollectionViewWaterfallCellDelegate>
 
 // 商品列表数组
 @property (nonatomic, strong) NSMutableArray *goodsList;
@@ -31,8 +31,7 @@
 @property (nonatomic, assign, getter=isLoading) BOOL loading;
 // 瀑布流布局
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) CollectionHeader *headerView;
-@property (nonatomic, strong) SRRefreshView *slimeView;
+//@property (nonatomic, strong) HomeCollectionHeader *headerView;
 @property (nonatomic, assign) NSInteger pageNum;
 
 @end
@@ -64,10 +63,11 @@
 //    [self startLoading];
 //    [self stopLoading];
     CHTCollectionViewWaterfallLayout *flowLayout = [[CHTCollectionViewWaterfallLayout alloc] init];
-    flowLayout.headerHeight = heightOfHeader;
+    flowLayout.headerHeight = SYHeightOfHeader;
+    flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     
     //collectionView
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50) collectionViewLayout:flowLayout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) collectionViewLayout:flowLayout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.backgroundColor = self.view.backgroundColor;
@@ -106,23 +106,12 @@
         });
     }];
     
-#warning 自动刷新(一进入程序就下拉刷新)
+    // 自动刷新(一进入程序就下拉刷新)
     [self.collectionView headerBeginRefreshing];
 }
 
 //创建刷新和加载更多地控件
 - (void)createRefreshView{
-    _slimeView = [[SRRefreshView alloc] init];
-    _slimeView.delegate = self;
-    _slimeView.upInset = 0;
-    _slimeView.slimeMissWhenGoingBack = YES;
-    _slimeView.slime.bodyColor = [UIColor redColor];
-    _slimeView.slime.skinColor = [UIColor whiteColor];
-    _slimeView.slime.lineWith = 1;
-    _slimeView.slime.shadowBlur = 0;
-    _slimeView.slime.shadowColor = [UIColor clearColor];
-    [_collectionView addSubview:_slimeView];
-    
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     [_collectionView addFooterWithTarget:self action:@selector(footerRereshing)];
@@ -130,33 +119,6 @@
     _collectionView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
     _collectionView.footerRefreshingText = @"正在帮你加载中,请稍等";
 }
-
-//下拉刷新
-- (void)slimeRefreshStartRefresh:(SRRefreshView *)refreshView
-{
-    //    _len1+=1;
-    //    _len2+=10;
-    //    [self requestJson1];
-    
-    /**
-     结束刷新 [_slimeView endRefresh];
-     **/
-    
-    _pageNum=1;
-//    _reflesh=1;
-//    if (_shouView.CategoriesReflush&&_shouView.topviewReflush&&_shouView.scrollviewReflush) {
-//        _shouView.CategoriesReflush=false;
-//        _shouView.topviewReflush=false;
-//        _shouView.scrollviewReflush=false;
-//        [self DownloadTheLatestData];
-//        [_shouView Categories];
-//        [_shouView CarouselPage];
-//        [_shouView TOPCategories];
-//    }else{
-//        [_slimeView endRefresh];
-//    }
-}
-
 
 - (void)footerRereshing {
     NSLog(@"footer");
@@ -189,7 +151,6 @@
     NSArray *goods = [LNGood goodsWithArray:array];
     goods = [CHTCollectionViewWaterfallCell getContentHeight:goods];
     [self.goodsList addObjectsFromArray:goods];
-    // 设置布局的属性
     // 刷新数据
     [self.collectionView reloadData];
 }
@@ -205,7 +166,7 @@
     CHTCollectionViewWaterfallCell *cell = (CHTCollectionViewWaterfallCell *)[collectionView
                                  dequeueReusableCellWithReuseIdentifier:@"CHTCollectionViewWaterfallCell"
                                  forIndexPath:indexPath];
-    
+    cell.delegate = self;
     LNGood *good = self.goodsList[indexPath.row];
     cell.good = good;
     
@@ -223,7 +184,6 @@
         reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:kind
                                                                                   withReuseIdentifier:HEADER_IDENTIFIER
                                                                                          forIndexPath:indexPath];
-        [reusableview setBackgroundColor:[UIColor redColor]];
         //广告轮播
         NSArray *imagesURL = @[
                                @"https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
@@ -249,9 +209,9 @@
         NSMutableArray *models = [NSMutableArray arrayWithObjects:dic1, dic2, dic3, nil];
         models = [BannerModel bannerModelWithArray:models];
         
-        AdView *adView = [AdView adScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, heightOfHeader) modelArr:models imagePropertyName:@"bannerUrl" pageControlShowStyle:UIPageControlShowStyleCenter];
+        AdView *adView = [AdView adScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SYHeightOfHeader) modelArr:models imagePropertyName:@"bannerUrl" pageControlShowStyle:UIPageControlShowStyleCenter];
         [adView setAdTitlePropertyName:@"bannerTitle" withShowStyle:AdTitleShowStyleCenter];
-        //    adView.isNeedCycleRoll = YES;     //    是否需要支持定时循环滚动，默认为YES
+        //    adView.isNeedCycleRoll = YES;     //是否需要支持定时循环滚动，默认为YES
         adView.adMoveTime = 5.0;                //设置图片滚动时间,默认3s
         
         //图片被点击后回调的方法
@@ -266,34 +226,9 @@
     return reusableview;
 }
 
-#pragma mark - UICollectionViewDelegate
-//点击了某个collectionCell
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"indexPath:%ld", (long)indexPath.row);
-}
-
 #pragma mark - scrollView代理方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-//    if (self.footerView == nil || self.isLoading) {
-//        return;
-//    }
-    
-//    if (self.footerView.frame.origin.y < (scrollView.contentOffset.y + scrollView.bounds.size.height)) {
-        // 如果正在刷新数据，不需要再次刷新
-        self.loading = YES;
-//        [self.footerView.indicator startAnimating];
-        // 模拟数据刷新
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            self.footerView = nil;
-//            [self loadData];
-            self.loading = NO;
-        });
-//    }
-}
-
-- (BOOL)prefersStatusBarHidden {
-    return YES;
 }
 
 #pragma mark - 懒加载
@@ -312,10 +247,23 @@
     return size;
 }
 
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForHeaderInSection:(NSInteger)section
-//{
-//    return heightOfHeader;
-//}
+- (void)addAdmire:(CHTCollectionViewWaterfallCell *)cell
+{
+    NSIndexPath *indexPath = [_collectionView indexPathForCell:cell];
+    LNGood *good = _goodsList[indexPath.row];
+    good.isAdmire = @"1";
+    good.admireNum = [NSString stringWithFormat:@"%d", [good.admireNum intValue]+1];
+    [_collectionView reloadData];
+}
+
+- (void)addCollection:(CHTCollectionViewWaterfallCell *)cell
+{
+    NSIndexPath *indexPath = [_collectionView indexPathForCell:cell];
+    LNGood *good = _goodsList[indexPath.row];
+    good.isCollection = @"1";
+    good.collectionNum = [NSString stringWithFormat:@"%d", [good.collectionNum intValue]+1];
+    [_collectionView reloadData];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

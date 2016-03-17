@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *admireNum;          // 点赞个数
 @property (nonatomic, strong) NSString *isAdmire;           // 点赞
 @property (nonatomic, strong) NSString *collectionNum;      // 收藏数
+@property (nonatomic, strong) NSString *isCollection;       // 收藏
 @property (nonatomic, assign) CGFloat contentHeight;        // 内容高度（除图片以外的高度）
 
 + (instancetype)goodWithDict:(NSDictionary *)dict atIndex:(NSUInteger)index; // 字典转模型

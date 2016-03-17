@@ -313,6 +313,15 @@ extern NSString *const CHTCollectionElementKindSectionFooter;
  *
  *    Default: 0.f
  */
+@property (nonatomic, assign) CGFloat minimumLineSpacing;
+
+/**
+ *  @brief The minimum height of the collection view's content.
+ *  @discussion
+ *    The minimum height of the collection view's content. This could be used to allow hidden headers with no content.
+ *
+ *    Default: 0.f
+ */
 @property (nonatomic, assign) CGFloat minimumContentHeight;
 
 /**

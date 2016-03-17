@@ -204,7 +204,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
 
 #pragma mark - Methods to Override
 - (void)prepareLayout {
-  [super prepareLayout];
+    [super prepareLayout];
   [self.headersAttribute removeAllObjects];
   [self.footersAttribute removeAllObjects];
   [self.unionRects removeAllObjects];
