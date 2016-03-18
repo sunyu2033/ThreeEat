@@ -21,6 +21,7 @@
 #import "RecipeCollectionHeader.h"
 #import "SYInfo.h"
 #import "MyInfoView.h"
+#import "ShoppingListViewController.h"
 
 @interface MyRecipeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout,CHTCollectionViewWaterfallCellDelegate, MyInfoViewDelegate>
 
@@ -89,7 +90,7 @@
     
     [self loadData];
     [self addHeader];
-    [self createRefreshView];
+    [self addFooter];
 }
 
 - (void)addHeader
@@ -101,18 +102,18 @@
         
         // 模拟延迟加载数据，因此2秒后才调用）
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [vc.collectionView reloadData];
+            [vc reloadData];
             // 结束刷新
             [vc.collectionView headerEndRefreshing];
         });
     }];
     
     // 自动刷新(一进入程序就下拉刷新)
-    [self.collectionView headerBeginRefreshing];
+//    [self.collectionView headerBeginRefreshing];
 }
 
 //创建刷新和加载更多地控件
-- (void)createRefreshView{
+- (void)addFooter{
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     [_collectionView addFooterWithTarget:self action:@selector(footerRereshing)];
@@ -151,8 +152,6 @@
     NSArray *goods = [LNGood goodsWithArray:array];
     goods = [CHTCollectionViewWaterfallCell getContentHeight:goods];
     [self.goodsList addObjectsFromArray:goods];
-    // 刷新数据
-    [self.collectionView reloadData];
 }
 
 #pragma mark - 数据源方法
@@ -227,17 +226,22 @@
     LNGood *good = _goodsList[indexPath.row];
     good.isAdmire = @"1";
     good.admireNum = [NSString stringWithFormat:@"%d", [good.admireNum intValue]+1];
-    [_collectionView reloadData];
+    [self reloadData];
 }
 
 - (void)pushToFavorViewController:(MyInfoView *)view
 {
-
+    
 }
 
 - (void)pushToSettingViewController:(MyInfoView *)view
 {
 
+}
+
+- (void)reloadData
+{
+    [_collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

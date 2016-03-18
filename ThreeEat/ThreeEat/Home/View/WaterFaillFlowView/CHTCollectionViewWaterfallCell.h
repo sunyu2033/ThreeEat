@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class LNGood;
+#import "LNGood.h"
 @class CHTCollectionViewWaterfallCell;
 
 @protocol CHTCollectionViewWaterfallCellDelegate <NSObject>

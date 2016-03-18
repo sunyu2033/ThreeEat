@@ -15,7 +15,6 @@
 #import "AdView.h"
 #import "BannerModel.h"
 #import "LNGood.h"
-#import "MJRefresh.h"
 #import "CHTCollectionViewWaterfallCell.h"
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "CHTCollectionViewWaterfallHeader.h"
@@ -31,7 +30,6 @@
 @property (nonatomic, assign, getter=isLoading) BOOL loading;
 // 瀑布流布局
 @property (nonatomic, strong) UICollectionView *collectionView;
-//@property (nonatomic, strong) HomeCollectionHeader *headerView;
 @property (nonatomic, assign) NSInteger pageNum;
 
 @end
@@ -100,14 +98,14 @@
         
         // 模拟延迟加载数据，因此2秒后才调用）
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [vc.collectionView reloadData];
+            [vc reloadData];
             // 结束刷新
             [vc.collectionView headerEndRefreshing];
         });
     }];
     
     // 自动刷新(一进入程序就下拉刷新)
-    [self.collectionView headerBeginRefreshing];
+//    [self.collectionView headerBeginRefreshing];
 }
 
 //创建刷新和加载更多地控件
@@ -152,7 +150,6 @@
     goods = [CHTCollectionViewWaterfallCell getContentHeight:goods];
     [self.goodsList addObjectsFromArray:goods];
     // 刷新数据
-    [self.collectionView reloadData];
 }
 
 #pragma mark - 数据源方法
@@ -253,7 +250,7 @@
     LNGood *good = _goodsList[indexPath.row];
     good.isAdmire = @"1";
     good.admireNum = [NSString stringWithFormat:@"%d", [good.admireNum intValue]+1];
-    [_collectionView reloadData];
+    [self reloadData];
 }
 
 - (void)addCollection:(CHTCollectionViewWaterfallCell *)cell
@@ -262,6 +259,11 @@
     LNGood *good = _goodsList[indexPath.row];
     good.isCollection = @"1";
     good.collectionNum = [NSString stringWithFormat:@"%d", [good.collectionNum intValue]+1];
+    [self reloadData];
+}
+
+- (void)reloadData
+{
     [_collectionView reloadData];
 }
 

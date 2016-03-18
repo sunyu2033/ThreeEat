@@ -97,6 +97,8 @@
 		96D18F251C96BFDA00613C2E /* shoppingListSelected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D18F131C96BFDA00613C2E /* shoppingListSelected@3x.png */; };
 		96D18F2F1C96C0C800613C2E /* TabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D18F2E1C96C0C800613C2E /* TabbarController.m */; };
 		96D18F341C96C1F200613C2E /* nav_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D18F331C96C1F200613C2E /* nav_background.png */; };
+		96D2D8321C9BACA1002B523C /* ShoppingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D2D8311C9BACA1002B523C /* ShoppingListCell.m */; };
+		96D2D8351C9BB3D2002B523C /* SYShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D2D8341C9BB3D2002B523C /* SYShoppingList.m */; };
 		96DA8D501C97EBA700664DFF /* LNGood.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA8D4F1C97EBA700664DFF /* LNGood.m */; };
 		96DA8D581C97F36B00664DFF /* SYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA8D531C97F36B00664DFF /* SYButton.m */; };
 		96DA8D591C97F36B00664DFF /* SYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA8D551C97F36B00664DFF /* SYTextField.m */; };
@@ -285,6 +287,10 @@
 		96D18F2D1C96C0C800613C2E /* TabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbarController.h; sourceTree = "<group>"; };
 		96D18F2E1C96C0C800613C2E /* TabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbarController.m; sourceTree = "<group>"; };
 		96D18F331C96C1F200613C2E /* nav_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_background.png; sourceTree = "<group>"; };
+		96D2D8301C9BACA1002B523C /* ShoppingListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListCell.h; sourceTree = "<group>"; };
+		96D2D8311C9BACA1002B523C /* ShoppingListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListCell.m; sourceTree = "<group>"; };
+		96D2D8331C9BB3D2002B523C /* SYShoppingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYShoppingList.h; sourceTree = "<group>"; };
+		96D2D8341C9BB3D2002B523C /* SYShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYShoppingList.m; sourceTree = "<group>"; };
 		96DA8D4E1C97EBA700664DFF /* LNGood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNGood.h; sourceTree = "<group>"; };
 		96DA8D4F1C97EBA700664DFF /* LNGood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNGood.m; sourceTree = "<group>"; };
 		96DA8D521C97F36B00664DFF /* SYButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYButton.h; sourceTree = "<group>"; };
@@ -469,6 +475,8 @@
 		961CA5A41C9AA3D100A16590 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				96D2D8331C9BB3D2002B523C /* SYShoppingList.h */,
+				96D2D8341C9BB3D2002B523C /* SYShoppingList.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -476,6 +484,8 @@
 		961CA5A51C9AA3D100A16590 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				96D2D8301C9BACA1002B523C /* ShoppingListCell.h */,
+				96D2D8311C9BACA1002B523C /* ShoppingListCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -640,9 +650,9 @@
 		96CF82171C96850F0038FD97 /* MyRecipe */ = {
 			isa = PBXGroup;
 			children = (
+				96CF82181C96850F0038FD97 /* Controller */,
 				961CA5AA1C9AA41200A16590 /* Model */,
 				961CA5AB1C9AA41200A16590 /* View */,
-				96CF82181C96850F0038FD97 /* Controller */,
 			);
 			path = MyRecipe;
 			sourceTree = "<group>";
@@ -888,6 +898,7 @@
 				TargetAttributes = {
 					04B9D7761C932F1000595BA2 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = BWSCF6WV5G;
 					};
 					04B9D78F1C932F1100595BA2 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -998,6 +1009,7 @@
 				968058AC1C99647F007A113F /* NSObject+MJProperty.m in Sources */,
 				96038F991C9824CC00950A79 /* CHTCollectionViewWaterfallHeader.m in Sources */,
 				96CF81F61C9683E10038FD97 /* BaseViewController.m in Sources */,
+				96D2D8321C9BACA1002B523C /* ShoppingListCell.m in Sources */,
 				96CF81F91C9683E10038FD97 /* HexStringToColor.m in Sources */,
 				04B9D8501C970F1E00595BA2 /* UIImageView+WebCache.m in Sources */,
 				96DA8D5A1C97F36B00664DFF /* SYTextView.m in Sources */,
@@ -1022,6 +1034,7 @@
 				968058F11C996868007A113F /* SRSlimeView.m in Sources */,
 				968058AD1C99647F007A113F /* NSString+MJExtension.m in Sources */,
 				04B9D8431C970F1E00595BA2 /* NSData+ImageContentType.m in Sources */,
+				96D2D8351C9BB3D2002B523C /* SYShoppingList.m in Sources */,
 				04B9D8411C970F1E00595BA2 /* AdView.m in Sources */,
 				96D18F2F1C96C0C800613C2E /* TabbarController.m in Sources */,
 				04B9D8491C970F1E00595BA2 /* SDWebImageManager.m in Sources */,
@@ -1183,6 +1196,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1201,7 +1215,7 @@
 					"$(PROJECT_DIR)/ThreeEat/ThirdParty/MBProgressHUD/ShareSDK-iOS-2.12/ShareSDK/Extend/SinaWeiboSDK",
 					"$(PROJECT_DIR)/ThreeEat/ThirdParty/MBProgressHUD/ShareSDK-iOS-2.12/ShareSDK/Extend/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shihu.51kl.ThreeEat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shihu.51kl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -1212,6 +1226,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1230,7 +1245,7 @@
 					"$(PROJECT_DIR)/ThreeEat/ThirdParty/MBProgressHUD/ShareSDK-iOS-2.12/ShareSDK/Extend/SinaWeiboSDK",
 					"$(PROJECT_DIR)/ThreeEat/ThirdParty/MBProgressHUD/ShareSDK-iOS-2.12/ShareSDK/Extend/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shihu.51kl.ThreeEat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shihu.51kl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};

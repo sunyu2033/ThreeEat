@@ -10,7 +10,6 @@
 #define admireBtnHeight 25
 
 #import "CHTCollectionViewWaterfallCell.h"
-#import "LNGood.h"
 
 @interface CHTCollectionViewWaterfallCell ()
 @property (nonatomic, strong) UIImageView *iconView;
