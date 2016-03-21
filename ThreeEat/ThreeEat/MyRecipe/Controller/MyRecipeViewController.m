@@ -22,6 +22,7 @@
 #import "SYInfo.h"
 #import "MyInfoView.h"
 #import "ShoppingListViewController.h"
+#import "MyFavorViewController.h"
 
 @interface MyRecipeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout,CHTCollectionViewWaterfallCellDelegate, MyInfoViewDelegate>
 
@@ -231,7 +232,9 @@
 
 - (void)pushToFavorViewController:(MyInfoView *)view
 {
-    
+    MyFavorViewController *favorVC = [[MyFavorViewController alloc] init];
+    favorVC.title = @"我喜欢的";
+    [self.navigationController pushViewController:favorVC animated:YES];
 }
 
 - (void)pushToSettingViewController:(MyInfoView *)view

@@ -43,23 +43,35 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [self setTabBar];
+}
+
+- (void)setTabBar {
+    
+    UIButton *returnButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [returnButton setFrame:CGRectMake(0, 10, 22, 22)];
+    [returnButton setImage:[UIImage imageNamed:@"nav_return"] forState:UIControlStateNormal];
+    [returnButton addTarget:self action:@selector(onBack) forControlEvents:UIControlEventTouchUpInside];
+    
+    if (self!=[self.navigationController.viewControllers objectAtIndex:0]) {
+        
+        UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithCustomView:returnButton];
+        self.navigationItem.leftBarButtonItem = leftBarButton;
+        self.tabBarController.tabBar.hidden = YES;
+    }else{
+        self.tabBarController.tabBar.hidden = NO;
+    }
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
     self.view.backgroundColor = [HexStringToColor colorWithHexString:@"eeeeee"];
-    
-    UIButton *returnButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [returnButton setFrame:CGRectMake(0, 10, 22, 22)];
-    [returnButton setImage:[UIImage imageNamed:@"public_return"] forState:UIControlStateNormal];
-    [returnButton addTarget:self action:@selector(onBack) forControlEvents:UIControlEventTouchUpInside];
-    
-    if (self!=[self.navigationController.viewControllers objectAtIndex:0]) {
-    
-        UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithCustomView:returnButton];
-        self.navigationItem.leftBarButtonItem = leftBarButton;
-    }
 }
 
 - (void)didReceiveMemoryWarning

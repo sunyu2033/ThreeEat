@@ -1,28 +1,23 @@
 //
-//  ShoppingListViewController.m
+//  MyFavorViewController.m
 //  ThreeEat
 //
-//  Created by WuJiaqi on 16/3/14.
+//  Created by WuJiaqi on 16/3/21.
 //  Copyright © 2016年 Samsun. All rights reserved.
 //
 
-//#define SYWidth [UIScreen mainScreen].bounds.size.width
-//#define SYHeight [UIScreen mainScreen].bounds.size.height
-
-#import "ShoppingListViewController.h"
+#import "MyFavorViewController.h"
 #import "ShoppingListCell.h"
 #import "SYShoppingList.h"
-#import "ShoppingListTableViewFactory.h"
-#import "ShoppingListTableView.h"
 
-@interface ShoppingListViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MyFavorViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) SYTableView *tableView;
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *shoppingList;
 
 @end
 
-@implementation ShoppingListViewController
+@implementation MyFavorViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -44,12 +39,10 @@
 -(UITableView *)tableView
 {
     if (!_tableView) {
-        
-        ShoppingListTableViewFactory *factory = [[ShoppingListTableViewFactory alloc] init];
-        _tableView = [factory createTableView];
-        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-44);
+        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
         _tableView.delegate=self;
         _tableView.dataSource=self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
@@ -97,7 +90,7 @@
     }];
     
     // 自动刷新(一进入程序就下拉刷新)
-//    [_tableView headerBeginRefreshing];
+    //    [_tableView headerBeginRefreshing];
 }
 
 //创建刷新和加载更多地控件
