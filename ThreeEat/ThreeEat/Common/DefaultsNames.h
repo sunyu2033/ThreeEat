@@ -17,6 +17,8 @@
 //uid
 #define DEFAULTS_uid                @"uid"
 
+//phone
+#define DEFAULTS_phone              @"phone"
 
 //登陆状态
 #define DEFAULTS_login_status       @"login_status"             //0:未登录    1:已登录

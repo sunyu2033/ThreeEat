@@ -51,19 +51,19 @@
 -(void)loadData
 {
     NSMutableDictionary *dict1 = [NSMutableDictionary dictionary];
-    [dict1 setObject:@"https://ss3.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D360/sign=1b99a81332d3d539de3d09c50a86e927/ae51f3deb48f8c54469d4dc23e292df5e1fe7f95.jpg" forKey:@"img"];
+    [dict1 setObject:@"http://f.hiphotos.baidu.com/baike/w%3D268/sign=c9603f592f2eb938ec6d7df4ed6385fe/574e9258d109b3de0105d8d0ccbf6c81810a4ccb.jpg" forKey:@"img"];
     [dict1 setObject:@"五件利器成就外酥内软的布朗尼五件利器成就外酥内软的布朗尼" forKey:@"title"];
     [dict1 setObject:@"1458272953" forKey:@"ctime"];
     [dict1 setObject:@"55" forKey:@"sid"];
     
     NSMutableDictionary *dict2 = [NSMutableDictionary dictionary];
-    [dict2 setObject:@"https://ss1.baidu.com/-4o3dSag_xI4khGko9WTAnF6hhy/image/h%3D200/sign=9dc05140d4a20cf45990f9df46084b0c/d058ccbf6c81800add9a5fc9b53533fa838b47fe.jpg" forKey:@"img"];
+    [dict2 setObject:@"http://images.meishij.net/p/20120308/cc2e8d768df8fd3de6503d765e8d81a1.jpg" forKey:@"img"];
     [dict2 setObject:@"早晚餐皆宜的鸡蛋料理" forKey:@"title"];
     [dict2 setObject:@"1458272953" forKey:@"ctime"];
     [dict2 setObject:@"45" forKey:@"sid"];
     
     NSMutableDictionary *dict3 = [NSMutableDictionary dictionary];
-    [dict3 setObject:@"https://ss1.baidu.com/-4o3dSag_xI4khGko9WTAnF6hhy/image/h%3D200/sign=c898bddf19950a7b6a3549c43ad0625c/14ce36d3d539b600be63e95eed50352ac75cb7ae.jpg" forKey:@"img"];
+    [dict3 setObject:@"http://f.hiphotos.baidu.com/baike/w%3D268/sign=c9603f592f2eb938ec6d7df4ed6385fe/574e9258d109b3de0105d8d0ccbf6c81810a4ccb.jpg" forKey:@"img"];
     [dict3 setObject:@"意大利宽面配青酱和xun干牛肉" forKey:@"title"];
     [dict3 setObject:@"1458272953" forKey:@"ctime"];
     [dict3 setObject:@"23" forKey:@"sid"];

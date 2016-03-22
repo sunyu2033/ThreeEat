@@ -99,6 +99,11 @@
 		96D18F341C96C1F200613C2E /* nav_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D18F331C96C1F200613C2E /* nav_background.png */; };
 		96D2D8321C9BACA1002B523C /* ShoppingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D2D8311C9BACA1002B523C /* ShoppingListCell.m */; };
 		96D2D8351C9BB3D2002B523C /* SYShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D2D8341C9BB3D2002B523C /* SYShoppingList.m */; };
+		96D6C62E1CA13143001D15AE /* SettingFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6C62D1CA13143001D15AE /* SettingFooterView.m */; };
+		96D6C6311CA13F65001D15AE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6C6301CA13F65001D15AE /* LoginViewController.m */; };
+		96D6C6341CA13F77001D15AE /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6C6331CA13F77001D15AE /* RegisterViewController.m */; };
+		96D6C6371CA141AA001D15AE /* SYTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6C6361CA141AA001D15AE /* SYTool.m */; };
+		96D9F20C1CA0DED20089EAD2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D9F20B1CA0DED20089EAD2 /* SettingViewController.m */; };
 		96DA8D501C97EBA700664DFF /* LNGood.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA8D4F1C97EBA700664DFF /* LNGood.m */; };
 		96DA8D581C97F36B00664DFF /* SYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA8D531C97F36B00664DFF /* SYButton.m */; };
 		96DA8D591C97F36B00664DFF /* SYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA8D551C97F36B00664DFF /* SYTextField.m */; };
@@ -297,6 +302,16 @@
 		96D2D8311C9BACA1002B523C /* ShoppingListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListCell.m; sourceTree = "<group>"; };
 		96D2D8331C9BB3D2002B523C /* SYShoppingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYShoppingList.h; sourceTree = "<group>"; };
 		96D2D8341C9BB3D2002B523C /* SYShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYShoppingList.m; sourceTree = "<group>"; };
+		96D6C62C1CA13143001D15AE /* SettingFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingFooterView.h; sourceTree = "<group>"; };
+		96D6C62D1CA13143001D15AE /* SettingFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingFooterView.m; sourceTree = "<group>"; };
+		96D6C62F1CA13F65001D15AE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		96D6C6301CA13F65001D15AE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		96D6C6321CA13F77001D15AE /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		96D6C6331CA13F77001D15AE /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		96D6C6351CA141AA001D15AE /* SYTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYTool.h; sourceTree = "<group>"; };
+		96D6C6361CA141AA001D15AE /* SYTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYTool.m; sourceTree = "<group>"; };
+		96D9F20A1CA0DED20089EAD2 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		96D9F20B1CA0DED20089EAD2 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		96DA8D4E1C97EBA700664DFF /* LNGood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNGood.h; sourceTree = "<group>"; };
 		96DA8D4F1C97EBA700664DFF /* LNGood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNGood.m; sourceTree = "<group>"; };
 		96DA8D521C97F36B00664DFF /* SYButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYButton.h; sourceTree = "<group>"; };
@@ -524,6 +539,8 @@
 				961CA5B01C9AA5C000A16590 /* RecipeCollectionHeader.m */,
 				961CA5B21C9AB25C00A16590 /* MyInfoView.h */,
 				961CA5B31C9AB25C00A16590 /* MyInfoView.m */,
+				96D6C62C1CA13143001D15AE /* SettingFooterView.h */,
+				96D6C62D1CA13143001D15AE /* SettingFooterView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -593,6 +610,8 @@
 				96CF81BD1C9683E10038FD97 /* HexStringToColor.m */,
 				96CF81BE1C9683E10038FD97 /* SecurityMD5.h */,
 				96CF81BF1C9683E10038FD97 /* SecurityMD5.m */,
+				96D6C6351CA141AA001D15AE /* SYTool.h */,
+				96D6C6361CA141AA001D15AE /* SYTool.m */,
 				96CF81C01C9683E10038FD97 /* TextFieldVerified.h */,
 				96CF81C11C9683E10038FD97 /* TextFieldVerified.m */,
 				96031F3F1C99472600330692 /* NSString+Extend.h */,
@@ -684,6 +703,12 @@
 				96CF82231C9685680038FD97 /* MyRecipeViewController.m */,
 				96DE042B1C9FC8DC00D4CA2C /* MyFavorViewController.h */,
 				96DE042C1C9FC8DC00D4CA2C /* MyFavorViewController.m */,
+				96D9F20A1CA0DED20089EAD2 /* SettingViewController.h */,
+				96D9F20B1CA0DED20089EAD2 /* SettingViewController.m */,
+				96D6C62F1CA13F65001D15AE /* LoginViewController.h */,
+				96D6C6301CA13F65001D15AE /* LoginViewController.m */,
+				96D6C6321CA13F77001D15AE /* RegisterViewController.h */,
+				96D6C6331CA13F77001D15AE /* RegisterViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1080,6 +1105,7 @@
 				04B9D8471C970F1E00595BA2 /* SDWebImageDownloader.m in Sources */,
 				968058A61C99647F007A113F /* MJExtensionConst.m in Sources */,
 				968058A81C99647F007A113F /* MJProperty.m in Sources */,
+				96D6C6311CA13F65001D15AE /* LoginViewController.m in Sources */,
 				96CF82271C9685810038FD97 /* ShoppingListViewController.m in Sources */,
 				96CF81F81C9683E10038FD97 /* Common.m in Sources */,
 				04B9D84A1C970F1E00595BA2 /* SDWebImagePrefetcher.m in Sources */,
@@ -1105,6 +1131,7 @@
 				968058931C996461007A113F /* ShowHUDTool.m in Sources */,
 				96038F981C9824CC00950A79 /* CHTCollectionViewWaterfallFooter.m in Sources */,
 				04B9D77F1C932F1100595BA2 /* AppDelegate.m in Sources */,
+				96D9F20C1CA0DED20089EAD2 /* SettingViewController.m in Sources */,
 				96038F9A1C9824CC00950A79 /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				048CC26E1C99C724000C4A6C /* MJRefreshConst.m in Sources */,
 				96CF82121C9683E20038FD97 /* Util.m in Sources */,
@@ -1114,6 +1141,7 @@
 				96CF82241C9685680038FD97 /* MyRecipeViewController.m in Sources */,
 				048CC26D1C99C724000C4A6C /* MJRefreshBaseView.m in Sources */,
 				96D18EA61C969DF600613C2E /* ButtonUtility.m in Sources */,
+				96D6C6341CA13F77001D15AE /* RegisterViewController.m in Sources */,
 				968058AA1C99647F007A113F /* NSObject+MJCoding.m in Sources */,
 				961CA5A31C9AA38700A16590 /* BannerModel.m in Sources */,
 				968058A91C99647F007A113F /* MJType.m in Sources */,
@@ -1138,12 +1166,14 @@
 				96CF82211C9685430038FD97 /* HomeViewController.m in Sources */,
 				96031F411C99472600330692 /* NSString+Extend.m in Sources */,
 				04B9D8421C970F1E00595BA2 /* MKAnnotationView+WebCache.m in Sources */,
+				96D6C62E1CA13143001D15AE /* SettingFooterView.m in Sources */,
 				961CA5B11C9AA5C000A16590 /* RecipeCollectionHeader.m in Sources */,
 				04B9D8451C970F1E00595BA2 /* SDWebImageCompat.m in Sources */,
 				961CA5B41C9AB25C00A16590 /* MyInfoView.m in Sources */,
 				04B9D84B1C970F1E00595BA2 /* UIButton+WebCache.m in Sources */,
 				04B9D84F1C970F1E00595BA2 /* UIImageView+HighlightedWebCache.m in Sources */,
 				961CA5B71C9AB5A100A16590 /* SYInfo.m in Sources */,
+				96D6C6371CA141AA001D15AE /* SYTool.m in Sources */,
 				96DA8D501C97EBA700664DFF /* LNGood.m in Sources */,
 				04B9D84C1C970F1E00595BA2 /* UIImage+GIF.m in Sources */,
 				04B9D8441C970F1E00595BA2 /* SDImageCache.m in Sources */,

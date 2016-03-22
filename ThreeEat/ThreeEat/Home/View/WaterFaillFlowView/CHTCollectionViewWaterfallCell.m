@@ -78,7 +78,7 @@
         [self.contentView addSubview:_iconView];
         
         _startBtn = [SYButton buttonWithType:UIButtonTypeCustom];
-        [_startBtn setImage:[UIImage imageNamed:@"start.jpg"] forState:UIControlStateNormal];
+//        [_startBtn setImage:[UIImage imageNamed:@"start.jpg"] forState:UIControlStateNormal];
         [_startBtn setBackgroundColor:[UIColor clearColor]];
         [self.contentView addSubview:_startBtn];
     }

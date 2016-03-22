@@ -46,8 +46,8 @@
     _iconView.center = CGPointMake(_iconView.center.x, self.center.y);
     _usernameLabel.frame = CGRectMake(CGRectGetMaxX(_iconView.frame)+5, CGRectGetMinY(_iconView.frame)+2, 100, 15);
     _levelNameLabel.frame = CGRectMake(CGRectGetMinX(_usernameLabel.frame), CGRectGetMaxY(_usernameLabel.frame)+10, 100, 20);
-    _setttingBtn.frame = CGRectMake(CGRectGetWidth(self.frame)-40, CGRectGetMaxY(_usernameLabel.frame), 30, 30);
-    _favorBtn.frame = CGRectMake(CGRectGetMinX(_setttingBtn.frame)-80, CGRectGetMaxY(_usernameLabel.frame), 60, 30);
+    _setttingBtn.frame = CGRectMake(CGRectGetWidth(self.frame)-40, CGRectGetMaxY(_usernameLabel.frame)+5, 30, 30);
+    _favorBtn.frame = CGRectMake(CGRectGetMinX(_setttingBtn.frame)-80, CGRectGetMinY(_setttingBtn.frame), 60, 30);
     NSLog(@"setting:%f favor:%f", CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
 }
 

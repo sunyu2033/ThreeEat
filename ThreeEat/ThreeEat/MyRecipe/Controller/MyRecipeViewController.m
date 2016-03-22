@@ -14,7 +14,6 @@
 #import "BannerModel.h"
 #import "AdView.h"
 #import "BannerModel.h"
-#import "LNGood.h"
 #import "MJRefresh.h"
 #import "CHTCollectionViewWaterfallCell.h"
 #import "CHTCollectionViewWaterfallLayout.h"
@@ -23,6 +22,7 @@
 #import "MyInfoView.h"
 #import "ShoppingListViewController.h"
 #import "MyFavorViewController.h"
+#import "SettingViewController.h"
 
 @interface MyRecipeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout,CHTCollectionViewWaterfallCellDelegate, MyInfoViewDelegate>
 
@@ -102,7 +102,7 @@
         // 进入刷新状态就会回调这个Block
         
         // 模拟延迟加载数据，因此2秒后才调用）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [vc reloadData];
             // 结束刷新
             [vc.collectionView headerEndRefreshing];
@@ -125,6 +125,7 @@
 
 - (void)footerRereshing {
     NSLog(@"footer");
+    [_collectionView footerEndRefreshing];
 }
 
 /**
@@ -133,7 +134,7 @@
 - (void)loadData {
     
     NSMutableDictionary *dict1 = [NSMutableDictionary dictionary];
-    [dict1 setObject:@"http://e.hiphotos.baidu.com/image/pic/item/8cb1cb1349540923592e4e479758d109b3de4947.jpg" forKey:@"img"];
+    [dict1 setObject:@"http://f.hiphotos.baidu.com/baike/w%3D268/sign=c9603f592f2eb938ec6d7df4ed6385fe/574e9258d109b3de0105d8d0ccbf6c81810a4ccb.jpg" forKey:@"img"];
     [dict1 setObject:@"速成巧克力布丁" forKey:@"title"];
     [dict1 setObject:@"甜点和烘烤食品" forKey:@"discribe"];
     [dict1 setObject:@"6,263" forKey:@"admireNum"];
@@ -141,7 +142,7 @@
     [dict1 setObject:@"21.3K" forKey:@"collectionNum"];
     
     NSMutableDictionary *dict2 = [NSMutableDictionary dictionary];
-    [dict2 setObject:@"http://f.hiphotos.baidu.com/image/pic/item/242dd42a2834349b7eaf886ccdea15ce37d3beaa.jpg" forKey:@"img"];
+    [dict2 setObject:@"http://images.meishij.net/p/20120308/cc2e8d768df8fd3de6503d765e8d81a1.jpg" forKey:@"img"];
     [dict2 setObject:@"法式香草面包(Fougasse)配番茄干" forKey:@"title"];
     [dict2 setObject:@"快手甜品" forKey:@"discribe"];
     [dict2 setObject:@"21.3K" forKey:@"admireNum"];
@@ -185,7 +186,7 @@
                                                           withReuseIdentifier:HEADER_IDENTIFIER
                                                                  forIndexPath:indexPath];
         
-        NSDictionary *dic = @{@"icon":@"http://e.hiphotos.baidu.com/image/pic/item/8cb1cb1349540923592e4e479758d109b3de4947.jpg",
+        NSDictionary *dic = @{@"icon":@"http://f.hiphotos.baidu.com/baike/w%3D268/sign=c9603f592f2eb938ec6d7df4ed6385fe/574e9258d109b3de0105d8d0ccbf6c81810a4ccb.jpg",
                               @"username":@"孙玉",
                               @"levelName":@"食神"};
         SYInfo *info = [SYInfo infoWithDict:dic];
@@ -239,7 +240,9 @@
 
 - (void)pushToSettingViewController:(MyInfoView *)view
 {
-
+    SettingViewController *settingVC = [[SettingViewController alloc] init];
+    settingVC.title = @"设置";
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 - (void)reloadData

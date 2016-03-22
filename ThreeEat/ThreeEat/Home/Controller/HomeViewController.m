@@ -97,7 +97,7 @@
         // 进入刷新状态就会回调这个Block
         
         // 模拟延迟加载数据，因此2秒后才调用）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [vc reloadData];
             // 结束刷新
             [vc.collectionView headerEndRefreshing];
@@ -120,6 +120,7 @@
 
 - (void)footerRereshing {
     NSLog(@"footer");
+    [_collectionView footerEndRefreshing];
 }
 
 /**
@@ -128,7 +129,7 @@
 - (void)loadData {
     
     NSMutableDictionary *dict1 = [NSMutableDictionary dictionary];
-    [dict1 setObject:@"http://e.hiphotos.baidu.com/image/pic/item/8cb1cb1349540923592e4e479758d109b3de4947.jpg" forKey:@"img"];
+    [dict1 setObject:@"http://e.hiphotos.baidu.com/baike/w%3D268/sign=59f5bed6f3deb48ffb69a6d8c81e3aef/a9d3fd1f4134970a9441349895cad1c8a7865d52.jpg" forKey:@"img"];
     [dict1 setObject:@"速成巧克力布丁" forKey:@"title"];
     [dict1 setObject:@"甜点和烘烤食品" forKey:@"discribe"];
     [dict1 setObject:@"6,263" forKey:@"admireNum"];
@@ -136,7 +137,7 @@
     [dict1 setObject:@"21.3K" forKey:@"collectionNum"];
     
     NSMutableDictionary *dict2 = [NSMutableDictionary dictionary];
-    [dict2 setObject:@"http://f.hiphotos.baidu.com/image/pic/item/242dd42a2834349b7eaf886ccdea15ce37d3beaa.jpg" forKey:@"img"];
+    [dict2 setObject:@"http://f.hiphotos.baidu.com/baike/w%3D268/sign=dc3f3ce6257f9e2f70351a0e2731e962/42166d224f4a20a43b97b2c792529822720ed021.jpg" forKey:@"img"];
     [dict2 setObject:@"法式香草面包(Fougasse)配番茄干" forKey:@"title"];
     [dict2 setObject:@"快手甜品" forKey:@"discribe"];
     [dict2 setObject:@"21.3K" forKey:@"admireNum"];
