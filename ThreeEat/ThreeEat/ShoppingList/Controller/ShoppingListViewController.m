@@ -37,6 +37,10 @@
     self.automaticallyAdjustsScrollViewInsets=NO;
     
     [self.view addSubview:self.tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.top.right.mas_equalTo(0);
+        make.height.mas_equalTo(SCREEN_HEIGHT-64);
+    }];
     [self addHeader];
     [self addFooter];
 }
@@ -44,10 +48,8 @@
 -(UITableView *)tableView
 {
     if (!_tableView) {
-        
         ShoppingListTableViewFactory *factory = [[ShoppingListTableViewFactory alloc] init];
         _tableView = [factory createTableView];
-        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
         _tableView.delegate=self;
         _tableView.dataSource=self;
     }

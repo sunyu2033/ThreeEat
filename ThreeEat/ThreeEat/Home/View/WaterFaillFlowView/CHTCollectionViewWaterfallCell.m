@@ -46,18 +46,64 @@
 
 - (void)setFrames {
 
-    _iconView.frame = CGRectMake(0, 0, _good.w, _good.h);
-    _startBtn.frame = CGRectMake(0, 0, _good.w/4, _good.w/4);
-    _startBtn.center = _iconView.center;
+    self.backgroundColor = [UIColor redColor];
+    
+//    _iconView.frame = CGRectMake(0, 0, _good.w, _good.h);
+//    _startBtn.frame = CGRectMake(0, 0, _good.w/4, _good.w/4);
+//    _startBtn.center = _iconView.center;
+//    [_startBtn.layer setCornerRadius:_startBtn.frame.size.width/2];
+//    CGSize contentSize = [_good.title stringForWidth:titleWidth font:_recipeNameLabel.font];
+//    _recipeNameLabel.frame = CGRectMake(originX, CGRectGetMaxY(_iconView.frame)+5,
+//                                        titleWidth, contentSize.height);
+//    
+//    _discribeLabel.frame = CGRectMake(originX, CGRectGetMaxY(_recipeNameLabel.frame), titleWidth, discribeHeight);
+//    _admireBtn.frame = CGRectMake(originX, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
+//    _admireNumLabel.frame = CGRectMake(CGRectGetMaxX(_admireBtn.frame)+5, CGRectGetMinY(_admireBtn.frame), 50, CGRectGetHeight(_admireBtn.frame));
+//    _collectionBtn.frame = CGRectMake(CGRectGetWidth(_iconView.frame)/2+10, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
+//    _collectionNumLabel.frame = CGRectMake(CGRectGetMaxX(_collectionBtn.frame)+5, CGRectGetMinY(_collectionBtn.frame), 50, CGRectGetHeight(_collectionBtn.frame));
+
+    
+    [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.top.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(_good.w, _good.h));
+    }];
+    [_startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(_good.w/4, _good.w/4));
+        make.center.equalTo(_iconView);
+    }];
     [_startBtn.layer setCornerRadius:_startBtn.frame.size.width/2];
+    
     CGSize contentSize = [_good.title stringForWidth:titleWidth font:_recipeNameLabel.font];
-    _recipeNameLabel.frame = CGRectMake(originX, CGRectGetMaxY(_iconView.frame)+5,
-                                        titleWidth, contentSize.height);
-    _discribeLabel.frame = CGRectMake(originX, CGRectGetMaxY(_recipeNameLabel.frame), titleWidth, discribeHeight);
-    _admireBtn.frame = CGRectMake(originX, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
-    _admireNumLabel.frame = CGRectMake(CGRectGetMaxX(_admireBtn.frame)+5, CGRectGetMinY(_admireBtn.frame), 50, CGRectGetHeight(_admireBtn.frame));
-    _collectionBtn.frame = CGRectMake(CGRectGetWidth(_iconView.frame)/2+10, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
-    _collectionNumLabel.frame = CGRectMake(CGRectGetMaxX(_collectionBtn.frame)+5, CGRectGetMinY(_collectionBtn.frame), 50, CGRectGetHeight(_collectionBtn.frame));
+    [_recipeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_iconView.mas_bottom).with.offset(5);
+        make.left.mas_equalTo(originX);
+        make.size.mas_equalTo(CGSizeMake(titleWidth, contentSize.height));
+    }];
+    
+    [_discribeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_recipeNameLabel.mas_bottom);
+        make.left.mas_equalTo(originX);
+        make.size.mas_equalTo(CGSizeMake(titleWidth, discribeHeight));
+    }];
+    
+    [_admireBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_discribeLabel.mas_bottom);
+        make.left.mas_equalTo(originX);
+        make.size.mas_equalTo(CGSizeMake(25, admireBtnHeight));
+    }];
+    
+    [_admireNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_admireBtn.mas_right).with.offset(5);
+        make.top.equalTo(_admireBtn.mas_top);
+        make.width.mas_equalTo(50);
+        make.height.equalTo(_admireBtn);
+    }];
+    
+//    _admireNumLabel.frame = CGRectMake(CGRectGetMaxX(_admireBtn.frame)+5, CGRectGetMinY(_admireBtn.frame), 50, CGRectGetHeight(_admireBtn.frame));
+//    _collectionBtn.frame = CGRectMake(CGRectGetWidth(_iconView.frame)/2+10, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
+//    _collectionNumLabel.frame = CGRectMake(CGRectGetMaxX(_collectionBtn.frame)+5, CGRectGetMinY(_collectionBtn.frame), 50, CGRectGetHeight(_collectionBtn.frame));
+
+    
     
     _admireBtn.enabled = [_good.isAdmire intValue]==0 ? YES : NO;
     _collectionBtn.enabled = [_good.isCollection intValue]==0 ? YES : NO;

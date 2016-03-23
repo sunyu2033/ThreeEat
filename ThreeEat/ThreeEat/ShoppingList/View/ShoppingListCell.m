@@ -49,9 +49,23 @@
 
 - (void)setFrames {
     
-    _iconView.frame = CGRectMake(10, 10, 50, 50);
-    _recipeNameLabel.frame = CGRectMake(CGRectGetMaxX(_iconView.frame)+10, CGRectGetMinY(_iconView.frame), kWidth-CGRectGetMaxX(_iconView.frame)-10*2, 34);
-    _ctimeLabel.frame = CGRectMake(CGRectGetMinX(_recipeNameLabel.frame), CGRectGetMaxY(_recipeNameLabel.frame), CGRectGetWidth(_recipeNameLabel.frame), 20);
+    [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.top.mas_equalTo(10);
+        make.size.mas_equalTo(CGSizeMake(50, 50));
+    }];
+
+    [_recipeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_iconView.mas_right).with.offset(10);
+        make.right.equalTo(self.contentView.mas_right).with.offset(-10);
+        make.top.equalTo(_iconView.mas_top);
+        make.height.mas_equalTo(34);
+    }];
+
+    [_ctimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.equalTo(_recipeNameLabel);
+        make.top.equalTo(_recipeNameLabel.mas_bottom);
+        make.height.mas_equalTo(20);
+    }];
 }
 
 //创建UI
@@ -76,9 +90,13 @@
     [self.contentView addSubview:deleteBtn];
     
     //容器视图
-    _containerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kWidth, SYCellHeight)];
+    _containerView=[[UIView alloc]init];
     _containerView.backgroundColor=[UIColor whiteColor];
     [self.contentView addSubview:_containerView];
+    [_containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.top.and.right.mas_equalTo(0);
+        make.height.mas_equalTo(SYCellHeight);
+    }];
     if(_isOpen)
         _containerView.center=CGPointMake(kWidth/2-100, _containerView.center.y);
     
@@ -103,9 +121,13 @@
         [_containerView addSubview:_iconView];
         
         UILabel *seperator = [[UILabel alloc] init];
-        seperator.frame = CGRectMake(0, SYCellHeight-0.5, kWidth, 0.5);
         seperator.backgroundColor = [UIColor lightGrayColor];
-        [self.contentView addSubview:seperator];
+        [_containerView addSubview:seperator];
+        [seperator mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.and.right.equalTo(_containerView);
+            make.top.equalTo(self.contentView.mas_bottom).with.offset(-0.5);
+            make.height.mas_equalTo(0.5);
+        }];
     }
     return _iconView;
 }
