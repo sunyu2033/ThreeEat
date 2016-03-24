@@ -100,7 +100,7 @@
     }];
     
     [_collectionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_admireBtn.mas_centerX).with.offset(10);
+        make.left.equalTo(_iconView.mas_centerX).with.offset(10);
         make.top.equalTo(_discribeLabel.mas_bottom);
 //        make.width.mas_equalTo(25);
 //        make.height.equalTo(_admireBtn);
