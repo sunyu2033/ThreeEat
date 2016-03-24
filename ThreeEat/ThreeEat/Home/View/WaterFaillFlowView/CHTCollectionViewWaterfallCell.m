@@ -99,11 +99,20 @@
         make.height.equalTo(_admireBtn);
     }];
     
-//    _admireNumLabel.frame = CGRectMake(CGRectGetMaxX(_admireBtn.frame)+5, CGRectGetMinY(_admireBtn.frame), 50, CGRectGetHeight(_admireBtn.frame));
-//    _collectionBtn.frame = CGRectMake(CGRectGetWidth(_iconView.frame)/2+10, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
-//    _collectionNumLabel.frame = CGRectMake(CGRectGetMaxX(_collectionBtn.frame)+5, CGRectGetMinY(_collectionBtn.frame), 50, CGRectGetHeight(_collectionBtn.frame));
-
+    [_collectionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_admireBtn.mas_centerX).with.offset(10);
+        make.top.equalTo(_discribeLabel.mas_bottom);
+//        make.width.mas_equalTo(25);
+//        make.height.equalTo(_admireBtn);
+        make.size.mas_equalTo(CGSizeMake(25, admireBtnHeight));
+    }];
     
+    [_collectionNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_collectionBtn.mas_right).with.offset(5);
+        make.top.equalTo(_collectionBtn.mas_top);
+        make.width.mas_equalTo(50);
+        make.height.equalTo(_collectionBtn);
+    }];
     
     _admireBtn.enabled = [_good.isAdmire intValue]==0 ? YES : NO;
     _collectionBtn.enabled = [_good.isCollection intValue]==0 ? YES : NO;
