@@ -25,7 +25,7 @@
 @implementation CHTCollectionViewWaterfallCell
 
 #define originX     5
-#define titleWidth  ([UIScreen mainScreen].bounds.size.width-10)/2-5*2
+#define titleWidth  ([UIScreen mainScreen].bounds.size.width-30)/2-5*2
 
 - (void)setGood:(LNGood *)good {
     
@@ -40,7 +40,6 @@
     self.admireNumLabel.text = good.admireNum;
     self.collectionNumLabel.text = good.collectionNum;
     
-    
     [self setFrames];
 }
 
@@ -48,77 +47,85 @@
 
     self.backgroundColor = [UIColor redColor];
     
-//    _iconView.frame = CGRectMake(0, 0, _good.w, _good.h);
-//    _startBtn.frame = CGRectMake(0, 0, _good.w/4, _good.w/4);
-//    _startBtn.center = _iconView.center;
-//    [_startBtn.layer setCornerRadius:_startBtn.frame.size.width/2];
-//    CGSize contentSize = [_good.title stringForWidth:titleWidth font:_recipeNameLabel.font];
-//    _recipeNameLabel.frame = CGRectMake(originX, CGRectGetMaxY(_iconView.frame)+5,
-//                                        titleWidth, contentSize.height);
-//    
-//    _discribeLabel.frame = CGRectMake(originX, CGRectGetMaxY(_recipeNameLabel.frame), titleWidth, discribeHeight);
-//    _admireBtn.frame = CGRectMake(originX, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
-//    _admireNumLabel.frame = CGRectMake(CGRectGetMaxX(_admireBtn.frame)+5, CGRectGetMinY(_admireBtn.frame), 50, CGRectGetHeight(_admireBtn.frame));
-//    _collectionBtn.frame = CGRectMake(CGRectGetWidth(_iconView.frame)/2+10, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
-//    _collectionNumLabel.frame = CGRectMake(CGRectGetMaxX(_collectionBtn.frame)+5, CGRectGetMinY(_collectionBtn.frame), 50, CGRectGetHeight(_collectionBtn.frame));
-
-    
-    [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.top.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(_good.w, _good.h));
-    }];
-    [_startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(_good.w/4, _good.w/4));
-        make.center.equalTo(_iconView);
-    }];
+    _iconView.frame = CGRectMake(0, 0, _good.w, _good.h);
+    _startBtn.frame = CGRectMake(0, 0, _good.w/4, _good.w/4);
+    _startBtn.center = _iconView.center;
     [_startBtn.layer setCornerRadius:_startBtn.frame.size.width/2];
-    
     CGSize contentSize = [_good.title stringForWidth:titleWidth font:_recipeNameLabel.font];
-    [_recipeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_iconView.mas_bottom).with.offset(5);
-        make.left.mas_equalTo(originX);
-        make.size.mas_equalTo(CGSizeMake(titleWidth, contentSize.height));
-    }];
+    _recipeNameLabel.frame = CGRectMake(originX, CGRectGetMaxY(_iconView.frame)+5,
+                                        titleWidth, contentSize.height);
+    _discribeLabel.frame = CGRectMake(originX, CGRectGetMaxY(_recipeNameLabel.frame), titleWidth, discribeHeight);
+    _admireBtn.frame = CGRectMake(originX, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
+    _admireNumLabel.frame = CGRectMake(CGRectGetMaxX(_admireBtn.frame)+5, CGRectGetMinY(_admireBtn.frame), 50, CGRectGetHeight(_admireBtn.frame));
+    _collectionBtn.frame = CGRectMake(CGRectGetWidth(_iconView.frame)/2+10, CGRectGetMaxY(_discribeLabel.frame), 25, admireBtnHeight);
+    _collectionNumLabel.frame = CGRectMake(CGRectGetMaxX(_collectionBtn.frame)+5, CGRectGetMinY(_collectionBtn.frame), 50, CGRectGetHeight(_collectionBtn.frame));
     
-    [_discribeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_recipeNameLabel.mas_bottom);
-        make.left.mas_equalTo(originX);
-        make.size.mas_equalTo(CGSizeMake(titleWidth, discribeHeight));
-    }];
-    
-    [_admireBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_discribeLabel.mas_bottom);
-        make.left.mas_equalTo(originX);
-        make.size.mas_equalTo(CGSizeMake(25, admireBtnHeight));
-    }];
-    
-    [_admireNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_admireBtn.mas_right).with.offset(5);
-        make.top.equalTo(_admireBtn.mas_top);
-        make.width.mas_equalTo(50);
-        make.height.equalTo(_admireBtn);
-    }];
-    
-    [_collectionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_iconView.mas_centerX).with.offset(10);
-        make.top.equalTo(_discribeLabel.mas_bottom);
-//        make.width.mas_equalTo(25);
+//    [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.top.right.mas_equalTo(0);
+//        make.height.mas_equalTo(_good.h);
+//    }];
+//    [_startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(_good.w/4, _good.w/4));
+//        make.center.equalTo(_iconView);
+//    }];
+//    [_startBtn.layer setCornerRadius:_startBtn.frame.size.width/2];
+//    
+//    CGSize contentSize = [_good.title stringForWidth:titleWidth font:_recipeNameLabel.font];
+//    [_recipeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        NSLog(@"contentSize:%f and:%ld", contentSize.height, (long)_index);
+//        make.top.equalTo(_iconView.mas_bottom).with.offset(5);
+//        make.left.mas_equalTo(originX);
+//        make.size.mas_equalTo(CGSizeMake(titleWidth, contentSize.height));
+//        _recipeNameLabel.backgroundColor = [UIColor greenColor];
+//    }];
+//
+//    [_discribeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(_recipeNameLabel.mas_bottom);
+//        make.left.mas_equalTo(originX);
+//        make.size.mas_equalTo(CGSizeMake(titleWidth, discribeHeight));
+//    }];
+//    
+//    [_admireBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(_discribeLabel.mas_bottom);
+//        make.left.mas_equalTo(originX);
+//        make.size.mas_equalTo(CGSizeMake(25, admireBtnHeight));
+//    }];
+//    
+//    [_admireNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(_admireBtn.mas_right).with.offset(5);
+//        make.top.equalTo(_admireBtn.mas_top);
+//        make.width.mas_equalTo(50);
 //        make.height.equalTo(_admireBtn);
-        make.size.mas_equalTo(CGSizeMake(25, admireBtnHeight));
-    }];
-    
-    [_collectionNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_collectionBtn.mas_right).with.offset(5);
-        make.top.equalTo(_collectionBtn.mas_top);
-        make.width.mas_equalTo(50);
-        make.height.equalTo(_collectionBtn);
-    }];
+//    }];
+//    
+//    [_collectionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(_iconView.mas_centerX).with.offset(10);
+//        make.top.equalTo(_discribeLabel.mas_bottom);
+//        make.size.mas_equalTo(CGSizeMake(25, admireBtnHeight));
+//    }];
+//    
+//    [_collectionNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(_collectionBtn.mas_right).with.offset(5);
+//        make.top.equalTo(_collectionBtn.mas_top);
+//        make.width.mas_equalTo(50);
+//        make.height.equalTo(_collectionBtn);
+//    }];
     
     _admireBtn.enabled = [_good.isAdmire intValue]==0 ? YES : NO;
     _collectionBtn.enabled = [_good.isCollection intValue]==0 ? YES : NO;
     
     NSString *image = [_good.isAdmire intValue]==0 ? @"admire" : @"admire_click";
     [_admireBtn setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    
+    [_iconView addObserver:self.contentView forKeyPath:@"bound" options:NSKeyValueObservingOptionNew context:NULL];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    UIImageView *image = object;
+    if ([change objectForKey:NSKeyValueChangeNewKey]&&[keyPath isEqualToString:@"bounds"]) {
+//        NSLog(@"bounds==%@--%ld",NSStringFromCGRect(image.bounds), (long)_index);
+    }
 }
 
 - (UIImageView *)iconView

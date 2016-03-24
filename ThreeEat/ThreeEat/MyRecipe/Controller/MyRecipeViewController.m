@@ -70,7 +70,7 @@
     flowLayout.sectionInset = UIEdgeInsetsMake(0, SYCollectionMargin, SYCollectionMargin, SYCollectionMargin);
     
     //collectionView
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50) collectionViewLayout:flowLayout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:flowLayout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.backgroundColor = self.view.backgroundColor;
@@ -78,6 +78,11 @@
     _collectionView.allowsMultipleSelection = NO;                    //默认为NO,是否可以多选
     _collectionView.scrollEnabled = YES;
     [self.view addSubview:_collectionView];
+    
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.mas_equalTo(0);
+        make.bottom.equalTo(self.view);
+    }];
     
     //注册
     [_collectionView registerClass:[CHTCollectionViewWaterfallCell class] forCellWithReuseIdentifier:@"CHTCollectionViewWaterfallCell"];
@@ -158,6 +163,7 @@
 
 #pragma mark - 数据源方法
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    NSLog(@"count:%lu", (unsigned long)self.goodsList.count);
     return self.goodsList.count;
 }
 
@@ -194,6 +200,11 @@
         infoView.delegate = self;
         infoView.info = info;
         [reusableview addSubview:infoView];
+        
+        [infoView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.right.mas_equalTo(0);
+            make.height.mas_equalTo(SYHeightOfHeader);
+        }];
         
     }else if (kind == CHTCollectionElementKindSectionFooter) {
         

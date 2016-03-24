@@ -39,7 +39,7 @@
     [self.view addSubview:self.tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.top.right.mas_equalTo(0);
-        make.height.mas_equalTo(SCREEN_HEIGHT-64);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-48);
     }];
     [self addHeader];
     [self addFooter];
@@ -76,7 +76,7 @@
     [dict3 setObject:@"意大利宽面配青酱和xun干牛肉" forKey:@"title"];
     [dict3 setObject:@"1458272953" forKey:@"ctime"];
     [dict3 setObject:@"23" forKey:@"sid"];
-    NSArray *array = @[dict1, dict2, dict3];
+    NSArray *array = @[dict1, dict2, dict3, dict2, dict3, dict2, dict3, dict2, dict3, dict2, dict3, dict2, dict3, dict2, dict3, dict2, dict3];
     
     NSArray *lists = [SYShoppingList shoppingListsWithArray:array];
     [_shoppingList addObjectsFromArray:lists];
@@ -114,7 +114,7 @@
 
 - (void)footerRereshing
 {
-    NSLog(@"ccccc");
+    [_tableView footerEndRefreshing];
 }
 
 #pragma mark - 懒加载

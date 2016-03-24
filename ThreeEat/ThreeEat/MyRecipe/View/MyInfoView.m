@@ -42,13 +42,43 @@
 
 - (void)setFrames {
     
-    _iconView.frame = CGRectMake(10, 0, 50, 50);
-    _iconView.center = CGPointMake(_iconView.center.x, self.center.y);
-    _usernameLabel.frame = CGRectMake(CGRectGetMaxX(_iconView.frame)+5, CGRectGetMinY(_iconView.frame)+2, 100, 15);
-    _levelNameLabel.frame = CGRectMake(CGRectGetMinX(_usernameLabel.frame), CGRectGetMaxY(_usernameLabel.frame)+10, 100, 20);
-    _setttingBtn.frame = CGRectMake(CGRectGetWidth(self.frame)-40, CGRectGetMaxY(_usernameLabel.frame)+5, 30, 30);
-    _favorBtn.frame = CGRectMake(CGRectGetMinX(_setttingBtn.frame)-80, CGRectGetMinY(_setttingBtn.frame), 60, 30);
-    NSLog(@"setting:%f favor:%f", CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+    [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(10);
+        make.centerY.equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(50, 50));
+    }];
+    
+    [_usernameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_iconView.mas_right).offset(5);
+        make.top.equalTo(_iconView.mas_top).offset(2);
+        make.size.mas_equalTo(CGSizeMake(100, 15));
+    }];
+    
+    [_levelNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_usernameLabel);
+        make.top.equalTo(_usernameLabel.mas_bottom).offset(10);
+        make.size.mas_equalTo(CGSizeMake(100, 20));
+    }];
+    
+    [_setttingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-20);
+        make.top.equalTo(_usernameLabel.mas_bottom).offset(5);
+        make.size.mas_equalTo(CGSizeMake(30, 30));
+    }];
+    
+    [_favorBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_setttingBtn.mas_left).offset(-20);
+        make.top.equalTo(_setttingBtn);
+        make.size.mas_equalTo(CGSizeMake(60, 30));
+    }];
+    
+//    self.backgroundColor = [UIColor redColor];
+//    _iconView.frame = CGRectMake(10, 0, 50, 50);
+//    _iconView.center = CGPointMake(_iconView.center.x, self.center.y);
+//    _usernameLabel.frame = CGRectMake(CGRectGetMaxX(_iconView.frame)+5, CGRectGetMinY(_iconView.frame)+2, 100, 15);
+//    _levelNameLabel.frame = CGRectMake(CGRectGetMinX(_usernameLabel.frame), CGRectGetMaxY(_usernameLabel.frame)+10, 100, 20);
+//    _setttingBtn.frame = CGRectMake(CGRectGetWidth(self.frame)-40, CGRectGetMaxY(_usernameLabel.frame)+5, 30, 30);
+//    _favorBtn.frame = CGRectMake(CGRectGetMinX(_setttingBtn.frame)-80, CGRectGetMinY(_setttingBtn.frame), 60, 30);
 }
 
 - (UIImageView *)iconView

@@ -32,6 +32,10 @@
     self.automaticallyAdjustsScrollViewInsets=NO;
     
     [self.view addSubview:self.tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.top.right.mas_equalTo(0);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-48);
+    }];
     [self addHeader];
     [self addFooter];
 }
