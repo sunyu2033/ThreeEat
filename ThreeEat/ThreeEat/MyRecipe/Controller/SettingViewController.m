@@ -30,7 +30,9 @@
         _tableView.delegate=self;
         _tableView.dataSource=self;
         _tableView.rowHeight = 44;
+        _tableView.scrollEnabled = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self.view addSubview:_tableView];
     }
     return _tableView;
 }
@@ -47,7 +49,9 @@
     self.automaticallyAdjustsScrollViewInsets=NO;
     self.view.backgroundColor=[UIColor whiteColor];
     
-    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.bottom.mas_equalTo(0);
+    }];
 }
 
 - (void)loadData {
@@ -77,13 +81,19 @@
             [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
         }
     }
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     cell.textLabel.text = _cellNames[indexPath.row];
     UILabel *label = [[UILabel alloc] init];
     label.frame = CGRectMake(10, CGRectGetHeight(cell.contentView.frame)-0.5, SCREEN_WIDTH-20, 0.5);
     label.backgroundColor = [UIColor lightGrayColor];
     [cell.contentView addSubview:label];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(10);
+        make.right.mas_equalTo(-10);
+        make.top.equalTo(cell.contentView.mas_bottom).offset(-0.5);
+        make.height.mas_equalTo(0.5);
+    }];
     
     return cell;
 }
