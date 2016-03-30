@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SYMainModel.h"
 
-@interface BannerModel : NSObject
+@interface BannerModel : SYMainModel
 
 @property (nonatomic, strong) NSString *bannerUrl;
 @property (nonatomic, strong) NSString *bannerTitle;
 
 + (NSMutableArray *)bannerModelWithArray:(NSArray *)info;
+
+//数据请求
+- (void) connectToAPI:(NSString *)url parameters:(NSDictionary *)parameters;
 @end

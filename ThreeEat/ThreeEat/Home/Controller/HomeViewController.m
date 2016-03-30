@@ -20,7 +20,7 @@
 #import "CHTCollectionViewWaterfallHeader.h"
 //#import "HomeCollectionHeader.h"
 
-@interface HomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout,CHTCollectionViewWaterfallCellDelegate>
+@interface HomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CHTCollectionViewDelegateWaterfallLayout,CHTCollectionViewWaterfallCellDelegate,SYMainModelDelegate>
 
 // 商品列表数组
 @property (nonatomic, strong) NSMutableArray *goodsList;
@@ -31,6 +31,9 @@
 // 瀑布流布局
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, assign) NSInteger pageNum;
+
+@property (nonatomic, strong) BannerModel *bannerModel;
+@property (nonatomic, strong) LNGood *goodModel;
 
 @end
 
@@ -212,6 +215,25 @@
         NSMutableArray *models = [NSMutableArray arrayWithObjects:dic1, dic2, dic3, nil];
         models = [BannerModel bannerModelWithArray:models];
         
+        
+        //-----------------------测试
+        NSString *url = @"http://api-dev-msi.51kl.com/v1/index/entry";
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setObject:@"170" forKey:@"city"];
+        [dict setObject:@"0" forKey:@"guide_ctime"];
+        [dict setObject:@"0" forKey:@"guide_version"];
+        [dict setObject:@"750e05039f6015a536701c53d912ae9a" forKey:@"sign"];
+        
+        _goodModel = [[LNGood alloc] init];
+        _goodModel.delegate = self;
+        [_goodModel connectToAPI:url parameters:dict];
+        
+        _bannerModel = [[BannerModel alloc] init];
+        _bannerModel.delegate = self;
+        [_bannerModel connectToAPI:url parameters:dict];
+        
+        //-------------------------
+        
         AdView *adView = [AdView adScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SYHeightOfHeader) modelArr:models imagePropertyName:@"bannerUrl" pageControlShowStyle:UIPageControlShowStyleCenter];
         [adView setAdTitlePropertyName:@"bannerTitle" withShowStyle:AdTitleShowStyleCenter];
         //    adView.isNeedCycleRoll = YES;     //是否需要支持定时循环滚动，默认为YES
@@ -270,6 +292,20 @@
 - (void)reloadData
 {
     [_collectionView reloadData];
+}
+
+#pragma mark - SYMainModelDelegate
+- (void)didFinishedConnection:(SYMainModel *)model data:(NSDictionary *)data {
+    
+    if (_bannerModel==model) {
+        NSLog(@"123");
+    }else if (_goodModel==model){
+        NSLog(@"456");
+    }
+}
+
+- (void)didFailConnection:(SYMainModel *)model error:(NSError *)error {
+    NSLog(@"error:%@", error);
 }
 
 - (void)didReceiveMemoryWarning {

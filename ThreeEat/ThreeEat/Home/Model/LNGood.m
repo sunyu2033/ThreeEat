@@ -55,4 +55,9 @@
     }];
     return tmpArray.copy;
 }
+
+- (void) connectToAPI:(NSString *)url parameters:(NSDictionary *)parameters {
+    
+    [self SYConnectToAPI:url parameters:parameters model:self];
+}
 @end

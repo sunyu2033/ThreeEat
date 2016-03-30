@@ -6,8 +6,6 @@
 //  Copyright © 2016年 Samsun. All rights reserved.
 //
 
-#define ConnectResultDataIsSuccess  @"true"
-
 #import "BannerModel.h"
 
 @implementation BannerModel
@@ -30,17 +28,9 @@
     return self;
 }
 
-+ (NSDictionary) connectToAPI:(NSString *)url parameter:(NSDictionary *)parameters {
+- (void) connectToAPI:(NSString *)url parameters:(NSDictionary *)parameters {
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dict = [NSDictionary dictionary];
-        dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-    
+    [self SYConnectToAPI:url parameters:parameters model:self];
 }
 
 @end

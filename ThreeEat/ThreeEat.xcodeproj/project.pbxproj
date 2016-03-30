@@ -118,11 +118,11 @@
 		96D353351CA5304700BFB907 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D3532A1CA5304700BFB907 /* AFURLRequestSerialization.m */; };
 		96D353361CA5304700BFB907 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D3532C1CA5304700BFB907 /* AFURLResponseSerialization.m */; };
 		96D353371CA5304700BFB907 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D3532E1CA5304700BFB907 /* AFURLSessionManager.m */; };
-		96D3533B1CA5308F00BFB907 /* SYAPIConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D3533A1CA5308F00BFB907 /* SYAPIConnect.m */; };
 		96D6C62E1CA13143001D15AE /* SettingFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6C62D1CA13143001D15AE /* SettingFooterView.m */; };
 		96D6C6311CA13F65001D15AE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6C6301CA13F65001D15AE /* LoginViewController.m */; };
 		96D6C6341CA13F77001D15AE /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6C6331CA13F77001D15AE /* RegisterViewController.m */; };
 		96D6C6371CA141AA001D15AE /* SYTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6C6361CA141AA001D15AE /* SYTool.m */; };
+		96D85F531CA638E1003A9A4A /* SYMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D85F521CA638E1003A9A4A /* SYMainModel.m */; };
 		96D9F20C1CA0DED20089EAD2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D9F20B1CA0DED20089EAD2 /* SettingViewController.m */; };
 		96DA8D501C97EBA700664DFF /* LNGood.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA8D4F1C97EBA700664DFF /* LNGood.m */; };
 		96DA8D581C97F36B00664DFF /* SYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA8D531C97F36B00664DFF /* SYButton.m */; };
@@ -365,8 +365,6 @@
 		96D3532C1CA5304700BFB907 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		96D3532D1CA5304700BFB907 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		96D3532E1CA5304700BFB907 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		96D353391CA5308F00BFB907 /* SYAPIConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYAPIConnect.h; sourceTree = "<group>"; };
-		96D3533A1CA5308F00BFB907 /* SYAPIConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYAPIConnect.m; sourceTree = "<group>"; };
 		96D6C62C1CA13143001D15AE /* SettingFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingFooterView.h; sourceTree = "<group>"; };
 		96D6C62D1CA13143001D15AE /* SettingFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingFooterView.m; sourceTree = "<group>"; };
 		96D6C62F1CA13F65001D15AE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -375,6 +373,8 @@
 		96D6C6331CA13F77001D15AE /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		96D6C6351CA141AA001D15AE /* SYTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYTool.h; sourceTree = "<group>"; };
 		96D6C6361CA141AA001D15AE /* SYTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYTool.m; sourceTree = "<group>"; };
+		96D85F511CA638E1003A9A4A /* SYMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYMainModel.h; sourceTree = "<group>"; };
+		96D85F521CA638E1003A9A4A /* SYMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYMainModel.m; sourceTree = "<group>"; };
 		96D9F20A1CA0DED20089EAD2 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		96D9F20B1CA0DED20089EAD2 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		96DA8D4E1C97EBA700664DFF /* LNGood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNGood.h; sourceTree = "<group>"; };
@@ -942,13 +942,13 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
-		96D353381CA5307200BFB907 /* APIConnect */ = {
+		96D85F501CA638CC003A9A4A /* SYMainModel */ = {
 			isa = PBXGroup;
 			children = (
-				96D353391CA5308F00BFB907 /* SYAPIConnect.h */,
-				96D3533A1CA5308F00BFB907 /* SYAPIConnect.m */,
+				96D85F511CA638E1003A9A4A /* SYMainModel.h */,
+				96D85F521CA638E1003A9A4A /* SYMainModel.m */,
 			);
-			path = APIConnect;
+			path = SYMainModel;
 			sourceTree = "<group>";
 		};
 		96DA8D411C97E23B00664DFF /* WaterFaillFlowView */ = {
@@ -975,7 +975,7 @@
 				96DA8D551C97F36B00664DFF /* SYTextField.m */,
 				96DA8D561C97F36B00664DFF /* SYTextView.h */,
 				96DA8D571C97F36B00664DFF /* SYTextView.m */,
-				96D353381CA5307200BFB907 /* APIConnect */,
+				96D85F501CA638CC003A9A4A /* SYMainModel */,
 			);
 			path = SY;
 			sourceTree = "<group>";
@@ -1247,6 +1247,7 @@
 				96D353311CA5304700BFB907 /* AFHTTPSessionManager.m in Sources */,
 				96CF81F81C9683E10038FD97 /* Common.m in Sources */,
 				04B9D84A1C970F1E00595BA2 /* SDWebImagePrefetcher.m in Sources */,
+				96D85F531CA638E1003A9A4A /* SYMainModel.m in Sources */,
 				04B9D8511C970F1E00595BA2 /* UIView+WebCacheOperation.m in Sources */,
 				96F0D06F1C9FF8C900FD0738 /* SYTableView.m in Sources */,
 				96F0D07F1C9FFC3F00FD0738 /* ShoppingListTableViewFactory.m in Sources */,
@@ -1324,7 +1325,6 @@
 				96D235DC1CA269560050D36D /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				04B9D84B1C970F1E00595BA2 /* UIButton+WebCache.m in Sources */,
 				04B9D84F1C970F1E00595BA2 /* UIImageView+HighlightedWebCache.m in Sources */,
-				96D3533B1CA5308F00BFB907 /* SYAPIConnect.m in Sources */,
 				961CA5B71C9AB5A100A16590 /* SYInfo.m in Sources */,
 				96D6C6371CA141AA001D15AE /* SYTool.m in Sources */,
 				96DA8D501C97EBA700664DFF /* LNGood.m in Sources */,

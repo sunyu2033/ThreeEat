@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LNGood : NSObject
+@interface LNGood : SYMainModel
 @property (nonatomic, assign) CGFloat h;                    // 图片高
 @property (nonatomic, assign) CGFloat w;                    // 图片宽
 @property (nonatomic, strong) NSString *img;                // 图片地址
@@ -22,4 +22,6 @@
 
 + (instancetype)goodWithDict:(NSDictionary *)dict atIndex:(NSUInteger)index; // 字典转模型
 + (NSArray *)goodsWithArray:(NSArray *)goodsArray; // 根据索引返回商品数组
+
+- (void) connectToAPI:(NSString *)url parameters:(NSDictionary *)parameters;
 @end
